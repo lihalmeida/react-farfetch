@@ -3,3 +3,10 @@
 .root {
   text-align: center;
 }
+
+.iconsContainer {
+  & div {
+    display: inline-block;
+    margin: 22px;
+  }
+}
