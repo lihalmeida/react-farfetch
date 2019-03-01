@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <BrowserRouter>
-          <div>
+          <div className={classes.header}>
             <nav>
               <Link to="/">Home</Link>&nbsp;
               <Link to="/products">Catalog</Link>&nbsp;
@@ -25,7 +25,6 @@ class App extends Component {
               <Link to="/404">Not Found</Link>&nbsp;
               <Link to="/components">Components</Link>&nbsp;
             </nav>
-            <hr />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/products" component={Catalog} />

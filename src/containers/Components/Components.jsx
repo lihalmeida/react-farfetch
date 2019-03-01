@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
-import { Button, THEME } from 'components/Button.jsx'
+import { Button, THEME } from 'components/Button/Button.jsx';
 import { Icon, ICON } from 'components/Icon/Icon.jsx'
+import Input from 'components/Input/Input.jsx'
+import Search from 'components/Search/Search.jsx';
+import Select from 'components/Select/Select.jsx';
 import classes from './Components.module.scss';
 
 class Components extends Component {
   render() {
     return (
       <div className={classes.root}>
-        <h1>UI components</h1>
-
-        <section>
-          <h2>Buttons</h2>
-          <Button>defaults</Button>
-          <Button isSizeFill theme={THEME.primary}>Add to bag</Button>
-          <Button theme={THEME.secondary}>Wishlist</Button>
-        </section>
+        <h1>UI    components</h1>
 
         <section>
           <h2>Text</h2>
@@ -29,6 +25,22 @@ class Components extends Component {
           <div>
             <span className={classes.fontName}>Polaris-Bold: </span>
             <span style={{ fontFamily: 'Polaris-Bold' }}>Size guide</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>Buttons</h2>
+          <Button>defaults</Button>
+          <Button isSizeFill theme={THEME.primary}>Add to bag</Button>
+          <Button theme={THEME.secondary}>Wishlist</Button>
+        </section>
+
+        <section>
+          <h2>Inputs</h2>
+          <div>
+            <Search />
+            <Select />
+            <Input />
           </div>
         </section>
 
