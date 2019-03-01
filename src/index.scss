@@ -1,23 +1,19 @@
+// partials
+@import './styles/fonts.scss';
 @import './styles/variables.scss';
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;*/
+  font-family: 'Polaris-Book', sans-serif;
+  font-size: 16px;
+  font-weight: 400px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.button {
-  background-color: pink !important;
-  color: yellow !important;
-  font-size: 20px;
-};
