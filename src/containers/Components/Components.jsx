@@ -11,14 +11,24 @@ class Components extends Component {
   state = {
     email: '',
     password: '',
+    search: ''
   };
 
-  onEmailChange = (e) => {
+  handleEmailChange = (e) => {
     this.setState({ email: e.target.value })
   }
 
-  onPasswordChange = (e) => {
+  handlePasswordChange = (e) => {
     this.setState({ password: e.target.value })
+  }
+
+  handleSearchChange = (e) => {
+    console.log('* search change *');
+    this.setState({ search: e.target.value })
+  }
+
+  handleSearchSubmit = (e) => {
+    console.log('Submit');
   }
 
   render() {
@@ -52,19 +62,24 @@ class Components extends Component {
         <section>
           <h2>Inputs</h2>
           <div>
-            <Search />
+            <Search
+              value={this.state.search}
+              placeholder="search"
+              onChange={this.handleSearchChange}
+              onSubmit={this.handleSearchSubmit}
+            />
             <Select />
             <Input
               type="email"
               placeholder="E-mail"
               value={ this.state.email }
-              onChange={ this.onEmailChange }
+              onChange={ this.handleEmailChange }
             />
             <Input
               type="password"
               placeholder="Password"
               value={ this.state.password }
-              onChange={ this.onPasswordChange }
+              onChange={ this.handlePasswordChange }
             />
           </div>
         </section>
