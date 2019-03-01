@@ -23,8 +23,6 @@ export class Button extends React.Component {
   };
 
   render() {
-    console.log(Object.values(THEME));
-
     const { isSizeFill, children, theme } = this.props
     const themeValue = THEME[theme] || THEME.primary;
     const rootClasses = classNames({

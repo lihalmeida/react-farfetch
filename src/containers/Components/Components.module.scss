@@ -2,4 +2,40 @@
 
 .root {
   text-align: center;
+  line-height: 1.5;
+
+  h1,
+  section {
+    margin-bottom: 60px;
+  }
+}
+
+.fontsContainer {
+  line-height: 2;
+}
+
+.fontName {
+  color: #888;
+}
+
+.iconsContainer {
+  word-break: break-all;
+
+  & div {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 60px;
+    width: 160px;
+    margin: 22px;
+  }
+
+  & svg,
+  & span {
+    display: block;
+    width: 100%;
+  }
+
+  .inverted { background-color: #dedede; }
 }

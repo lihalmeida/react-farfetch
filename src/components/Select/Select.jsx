@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import classes from './SelectSize.module.scss';
+import classes from './Select.module.scss';
 
-export class SelectSize extends React.Component {
+export class Select extends React.Component {
   render() {
     return (
       <div>
@@ -18,4 +18,4 @@ export class SelectSize extends React.Component {
   }
 }
 
-export default SelectSize;
+export default Select;
