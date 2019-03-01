@@ -1,4 +1,4 @@
-@import '../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 .root {
   min-height: 44px;
@@ -6,11 +6,17 @@
   max-width: 200px;
   width: auto;
   font-size: 15px;
+  font-weight: bold;
+  text-transform: none;
+  text-align: center;
+  line-height: 1.2;
+  cursor: pointer;
   background-color: $black;
   color: $white;
   border: none;
-  padding: 5px 10px;
   border-radius: 4px;
+  margin: 10px 0;
+  padding: 5px 10px;
 }
 
 .sizeFill {
@@ -25,5 +31,11 @@
 .themeSecondary {
   background-color: $white;
   color: $black;
-  border: solid 1px $light-gray-1;
+  border: solid 1px $light-gray-2;
+}
+
+
+.root:focus,
+.root:hover {
+  opacity: 0.6;
 }

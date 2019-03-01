@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Button, THEME } from '../../components/Button.jsx'
+import { Button, THEME } from '../../components/Button/Button.jsx';
+import Search from '../../components/Search/Search.jsx';
+import SelectSize from '../../components/SelectSize/SelectSize.jsx';
+import Input from '../../components/Input/Input.jsx'
 import classes from './Components.module.scss';
 
 class Components extends Component {
@@ -20,6 +23,9 @@ class Components extends Component {
         >
           Wishlist
         </Button>
+        <Search />
+        <SelectSize />
+        <Input />
       </div>
     );
   }
