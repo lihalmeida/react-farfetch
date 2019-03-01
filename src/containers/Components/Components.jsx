@@ -7,10 +7,24 @@ import Select from 'components/Select/Select.jsx';
 import classes from './Components.module.scss';
 
 class Components extends Component {
+
+  state = {
+    email: '',
+    password: '',
+  };
+
+  onEmailChange = (e) => {
+    this.setState({ email: e.target.value })
+  }
+
+  onPasswordChange = (e) => {
+    this.setState({ password: e.target.value })
+  }
+
   render() {
     return (
       <div className={classes.root}>
-        <h1>UI    components</h1>
+        <h1>UI components</h1>
 
         <section>
           <h2>Text</h2>
@@ -40,7 +54,18 @@ class Components extends Component {
           <div>
             <Search />
             <Select />
-            <Input />
+            <Input
+              type="email"
+              placeholder="E-mail"
+              value={ this.state.email }
+              onChange={ this.onEmailChange }
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              value={ this.state.password }
+              onChange={ this.onPasswordChange }
+            />
           </div>
         </section>
 
