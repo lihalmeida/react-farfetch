@@ -9,42 +9,62 @@ class Components extends Component {
       <div className={classes.root}>
         <h1>UI components</h1>
 
-        <h2>Buttons</h2>
-        <Button>defaults</Button>
-        <Button isSizeFill theme={THEME.primary}>Add to bag</Button>
-        <Button theme={THEME.secondary}>Wishlist</Button>
+        <section>
+          <h2>Buttons</h2>
+          <Button>defaults</Button>
+          <Button isSizeFill theme={THEME.primary}>Add to bag</Button>
+          <Button theme={THEME.secondary}>Wishlist</Button>
+        </section>
 
-        <h2>Text</h2>
-        <div style={{ fontFamily: 'Polaris-Book' }}>Kids</div>
-        <div style={{ fontFamily: 'Polaris-Condensed-Bold' }}>NIKE</div>
-        <div style={{ fontFamily: 'Polaris-Bold' }}>Size guide</div>
+        <section>
+          <h2>Text</h2>
+          <div className={classes.fontsContainer}>
+            <span className={classes.fontName}>Polaris-Book: </span>
+            <span style={{ fontFamily: 'Polaris-Book' }}>Kids</span>
+          </div>
+          <div>
+            <span className={classes.fontName}>Polaris-Condensed-Bold: </span>
+            <span style={{ fontFamily: 'Polaris-Condensed-Bold' }}>NIKE</span>
+          </div>
+          <div>
+            <span className={classes.fontName}>Polaris-Bold: </span>
+            <span style={{ fontFamily: 'Polaris-Bold' }}>Size guide</span>
+          </div>
+        </section>
 
-        <h2>Icons</h2>
-        <div className={classes.iconsContainer}>
-          <div>iconCaretDownSmall:<Icon icon={ICON.iconCaretDownSmall} /></div>
-          <div>iconHamburguer:<Icon icon={ICON.iconHamburguer} /></div>
-          <div>iconSearch:<Icon icon={ICON.iconSearch} /></div>
-          <div>iconUser:<Icon icon={ICON.iconUser} /></div>
-          <div>iconStar:<Icon icon={ICON.iconStar} /></div>
-          <div>iconCheckout:<Icon icon={ICON.iconCheckout} /></div>
-          <div>iconSearchBigGray:<Icon icon={ICON.iconSearchBigGray} /></div>
-          <div>iconZoomPlus:<Icon icon={ICON.iconZoomPlus} /></div>
-          <div>iconCaretDownBig:<Icon icon={ICON.iconCaretDownBig} /></div>
-          <div>iconCaretDownFilled:<Icon icon={ICON.iconCaretDownFilled} /></div>
-          <div>iconClose:<Icon icon={ICON.iconClose} /></div>
-          <div>iconBagWhite:<Icon icon={ICON.iconBagWhite} /></div>
-          <div>iconStarGray:<Icon icon={ICON.iconStarGray} /></div>
-          <div>iconCaretDownFilledGray:<Icon icon={ICON.iconCaretDownFilledGray} /></div>
-          <div>iconFacebook:<Icon icon={ICON.iconFacebook} /></div>
-          <div>iconTwitter:<Icon icon={ICON.iconTwitter} /></div>
-          <div>iconPinterest:<Icon icon={ICON.iconPinterest} /></div>
-          <div>iconGooglePlus:<Icon icon={ICON.iconGooglePlus} /></div>
-          <div>iconEmail:<Icon icon={ICON.iconEmail} /></div>
-          <div>iconPhone:<Icon icon={ICON.iconPhone} /></div>
-          <div>iconTags:<Icon icon={ICON.iconTags} /></div>
-          <div>iconStarRounded:<Icon icon={ICON.iconStarRounded} /></div>
-          <div>iconReturns:<Icon icon={ICON.iconReturns} /></div>
-        </div>
+        <section>
+          <h2>Icons</h2>
+          <div className={classes.iconsContainer}>
+            <div className={classes.inverted}><Icon icon={ICON.bagWhite} /><span>bagWhite</span></div>
+            <div><Icon icon={ICON.caretDownBig} /><span>caretDownBig</span></div>
+            <div><Icon icon={ICON.caretDownFilled} /><span>caretDownFilled</span></div>
+            <div><Icon icon={ICON.caretDownFilledGray} /><span>caretDownFilledGray</span></div>
+            <div><Icon icon={ICON.caretDownSmall} /><span>caretDownSmall</span></div>
+            <div><Icon icon={ICON.caretUp} /><span>caretUp</span></div>
+            <div><Icon icon={ICON.check} /><span>check</span></div>
+            <div><Icon icon={ICON.checkout} /><span>checkout</span></div>
+            <div><Icon icon={ICON.checkWhite} /><span>checkWhite</span></div>
+            <div><Icon icon={ICON.close} /><span>close</span></div>
+            <div><Icon icon={ICON.closeWhite} /><span>closeWhite</span></div>
+            <div><Icon icon={ICON.email} /><span>email</span></div>
+            <div><Icon icon={ICON.facebook} /><span>facebook</span></div>
+            <div><Icon icon={ICON.googlePlus} /><span>googlePlus</span></div>
+            <div><Icon icon={ICON.hamburguer} /><span>hamburguer</span></div>
+            <div><Icon icon={ICON.phone} /><span>phone</span></div>
+            <div><Icon icon={ICON.pinterest} /><span>pinterest</span></div>
+            <div><Icon icon={ICON.returns} /><span>returns</span></div>
+            <div><Icon icon={ICON.search} /><span>search</span></div>
+            <div><Icon icon={ICON.searchBigGray} /><span>searchBigGray</span></div>
+            <div><Icon icon={ICON.sort} /><span>sort</span></div>
+            <div><Icon icon={ICON.star} /><span>star</span></div>
+            <div><Icon icon={ICON.starGray} /><span>starGray</span></div>
+            <div><Icon icon={ICON.starRounded} /><span>starRounded</span></div>
+            <div><Icon icon={ICON.tags} /><span>tags</span></div>
+            <div><Icon icon={ICON.twitter} /><span>twitter</span></div>
+            <div><Icon icon={ICON.user} /><span>user</span></div>
+            <div><Icon icon={ICON.zoomPlus} /><span>zoomPlus</span></div>
+          </div>
+        </section>
       </div>
     );
   }

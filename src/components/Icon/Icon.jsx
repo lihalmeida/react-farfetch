@@ -1,81 +1,95 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-// svgs
-import { ReactComponent as iconCaretDownSmall } from 'assets/icons/caret-down-small.svg';
-import { ReactComponent as iconHamburguer } from 'assets/icons/hamburguer.svg';
-import { ReactComponent as iconSearch } from 'assets/icons/search.svg';
-import { ReactComponent as iconUser } from 'assets/icons/user.svg';
-import { ReactComponent as iconStar } from 'assets/icons/star.svg';
-import { ReactComponent as iconCheckout } from 'assets/icons/checkout.svg'
-import { ReactComponent as iconSearchBigGray } from 'assets/icons/search-big-gray.svg'
-import { ReactComponent as iconZoomPlus } from 'assets/icons/zoom-plus.svg';
-import { ReactComponent as iconCaretDownBig } from 'assets/icons/caret-down-big.svg'
-import { ReactComponent as iconCaretDownFilled } from 'assets/icons/caret-down-filled.svg';
-import { ReactComponent as iconClose } from 'assets/icons/close.svg';
-import { ReactComponent as iconBagWhite } from 'assets/icons/bag-white.svg'
-import { ReactComponent as iconStarGray } from 'assets/icons/star-gray.svg';
-import { ReactComponent as iconCaretDownFilledGray } from 'assets/icons/caret-down-filled-gray.svg'
-import { ReactComponent as iconFacebook } from 'assets/icons/facebook.svg';
-import { ReactComponent as iconTwitter } from 'assets/icons/twitter.svg';
-import { ReactComponent as iconPinterest } from 'assets/icons/pinterest.svg';
-import { ReactComponent as iconGooglePlus } from 'assets/icons/google-plus.svg';
-import { ReactComponent as iconEmail } from 'assets/icons/email.svg';
-import { ReactComponent as iconPhone } from 'assets/icons/phone.svg'
-import { ReactComponent as iconTags } from 'assets/icons/tags.svg';
-import { ReactComponent as iconStarRounded } from 'assets/icons/star-rounded.svg';
-import { ReactComponent as iconReturns } from 'assets/icons/returns.svg'
+import { ReactComponent as bagWhite } from 'assets/icons/bag-white.svg'
+import { ReactComponent as caretDownBig } from 'assets/icons/caret-down-big.svg'
+import { ReactComponent as caretDownFilled } from 'assets/icons/caret-down-filled.svg';
+import { ReactComponent as caretDownFilledGray } from 'assets/icons/caret-down-filled-gray.svg'
+import { ReactComponent as caretDownSmall } from 'assets/icons/caret-down-small.svg';
+import { ReactComponent as caretUp } from 'assets/icons/caret-up.svg';
+import { ReactComponent as check } from 'assets/icons/check.svg';
+import { ReactComponent as checkout } from 'assets/icons/checkout.svg'
+import { ReactComponent as checkWhite } from 'assets/icons/check-white.svg';
+import { ReactComponent as close } from 'assets/icons/close.svg';
+import { ReactComponent as closeWhite } from 'assets/icons/close-white.svg';
+import { ReactComponent as email } from 'assets/icons/email.svg';
+import { ReactComponent as facebook } from 'assets/icons/facebook.svg';
+import { ReactComponent as googlePlus } from 'assets/icons/google-plus.svg';
+import { ReactComponent as hamburguer } from 'assets/icons/hamburguer.svg';
+import { ReactComponent as phone } from 'assets/icons/phone.svg'
+import { ReactComponent as pinterest } from 'assets/icons/pinterest.svg';
+import { ReactComponent as returns } from 'assets/icons/returns.svg'
+import { ReactComponent as search } from 'assets/icons/search.svg';
+import { ReactComponent as searchBigGray } from 'assets/icons/search-big-gray.svg'
+import { ReactComponent as sort } from 'assets/icons/sort.svg';
+import { ReactComponent as star } from 'assets/icons/star.svg';
+import { ReactComponent as starGray } from 'assets/icons/star-gray.svg';
+import { ReactComponent as starRounded } from 'assets/icons/star-rounded.svg';
+import { ReactComponent as tags } from 'assets/icons/tags.svg';
+import { ReactComponent as twitter } from 'assets/icons/twitter.svg';
+import { ReactComponent as user } from 'assets/icons/user.svg';
+import { ReactComponent as zoomPlus } from 'assets/icons/zoom-plus.svg';
 
 export const ICON = {
-  iconCaretDownSmall: 'iconCaretDownSmall',
-  iconHamburguer: 'iconHamburguer',
-  iconSearch: 'iconSearch',
-  iconUser: 'iconUser',
-  iconStar: 'iconStar',
-  iconCheckout: 'iconCheckout',
-  iconSearchBigGray: 'iconSearchBigGray',
-  iconZoomPlus: 'iconZoomPlus',
-  iconCaretDownBig: 'iconCaretDownBig',
-  iconCaretDownFilled: 'iconCaretDownFilled',
-  iconClose: 'iconClose',
-  iconBagWhite: 'iconBagWhite',
-  iconStarGray: 'iconStarGray',
-  iconCaretDownFilledGray: 'iconCaretDownFilledGray',
-  iconFacebook: 'iconFacebook',
-  iconTwitter: 'iconTwitter',
-  iconPinterest: 'iconPinterest',
-  iconGooglePlus: 'iconGooglePlus',
-  iconEmail: 'iconEmail',
-  iconPhone: 'iconPhone',
-  iconTags: 'iconTags',
-  iconStarRounded: 'iconStarRounded',
-  iconReturns: 'iconReturns',
+  bagWhite: 'bagWhite',
+  caretDownBig: 'caretDownBig',
+  caretDownFilled: 'caretDownFilled',
+  caretDownFilledGray: 'caretDownFilledGray',
+  caretDownSmall: 'caretDownSmall',
+  caretUp: 'caretUp',
+  check: 'check',
+  checkout: 'checkout',
+  checkWhite: 'checkWhite',
+  close: 'close',
+  closeWhite: 'closeWhite',
+  email: 'email',
+  facebook: 'facebook',
+  googlePlus: 'googlePlus',
+  hamburguer: 'hamburguer',
+  phone: 'phone',
+  pinterest: 'pinterest',
+  returns: 'returns',
+  search: 'search',
+  searchBigGray: 'searchBigGray',
+  sort: 'sort',
+  star: 'star',
+  starGray: 'starGray',
+  starRounded: 'starRounded',
+  tags: 'tags',
+  twitter: 'twitter',
+  user: 'user',
+  zoomPlus: 'zoomPlus',
 };
 
 const svgByIcon = {
-  [ICON.iconCaretDownSmall]: iconCaretDownSmall,
-  [ICON.iconHamburguer]: iconHamburguer,
-  [ICON.iconSearch]: iconSearch,
-  [ICON.iconUser]: iconUser,
-  [ICON.iconStar]: iconStar,
-  [ICON.iconCheckout]: iconCheckout,
-  [ICON.iconSearchBigGray]: iconSearchBigGray,
-  [ICON.iconZoomPlus]: iconZoomPlus,
-  [ICON.iconCaretDownBig]: iconCaretDownBig,
-  [ICON.iconCaretDownFilled]: iconCaretDownFilled,
-  [ICON.iconClose]: iconClose,
-  [ICON.iconBagWhite]: iconBagWhite,
-  [ICON.iconStarGray]: iconStarGray,
-  [ICON.iconCaretDownFilledGray]: iconCaretDownFilledGray,
-  [ICON.iconFacebook]: iconFacebook,
-  [ICON.iconTwitter]: iconTwitter,
-  [ICON.iconPinterest]: iconPinterest,
-  [ICON.iconGooglePlus]: iconGooglePlus,
-  [ICON.iconEmail]: iconEmail,
-  [ICON.iconPhone]: iconPhone,
-  [ICON.iconTags]: iconTags,
-  [ICON.iconStarRounded]: iconStarRounded,
-  [ICON.iconReturns]: iconReturns,
+  [ICON.bagWhite]: bagWhite,
+  [ICON.caretDownBig]: caretDownBig,
+  [ICON.caretDownFilled]: caretDownFilled,
+  [ICON.caretDownFilledGray]: caretDownFilledGray,
+  [ICON.caretDownSmall]: caretDownSmall,
+  [ICON.caretUp]: caretUp,
+  [ICON.check]: check,
+  [ICON.checkout]: checkout,
+  [ICON.checkWhite]: checkWhite,
+  [ICON.close]: close,
+  [ICON.closeWhite]: closeWhite,
+  [ICON.email]: email,
+  [ICON.facebook]: facebook,
+  [ICON.googlePlus]: googlePlus,
+  [ICON.hamburguer]: hamburguer,
+  [ICON.phone]: phone,
+  [ICON.pinterest]: pinterest,
+  [ICON.returns]: returns,
+  [ICON.search]: search,
+  [ICON.searchBigGray]: searchBigGray,
+  [ICON.sort]: sort,
+  [ICON.star]: star,
+  [ICON.starGray]: starGray,
+  [ICON.starRounded]: starRounded,
+  [ICON.tags]: tags,
+  [ICON.twitter]: twitter,
+  [ICON.user]: user,
+  [ICON.zoomPlus]: zoomPlus,
 };
 
 export class Icon extends PureComponent {
