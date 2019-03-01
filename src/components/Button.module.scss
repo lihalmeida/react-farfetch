@@ -1,0 +1,29 @@
+@import '../styles/variables.scss';
+
+.root {
+  min-height: 44px;
+  min-width: 80px;
+  max-width: 200px;
+  width: auto;
+  font-size: 15px;
+  background-color: $black;
+  color: $white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.sizeFill {
+  width: 100%;
+}
+
+.themePrimary {
+  background-color: $black;
+  color: $white;
+}
+
+.themeSecondary {
+  background-color: $white;
+  color: $black;
+  border: solid 1px $light-gray-1;
+}

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './NotFound.scss';
+import classes from './NotFound.module.scss';
 
 class NotFound extends Component {
   render() {
     return (
-      <div className="not-found">
+      <div className={classes.root}>
         404
       </div>
     );

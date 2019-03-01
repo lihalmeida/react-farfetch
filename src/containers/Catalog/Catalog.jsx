@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './Catalog.scss';
+import classes from './Catalog.module.scss';
 
 class Catalog extends Component {
   render() {
     return (
-      <div className="catalog">
+      <div className={classes.root}>
         Catalog
       </div>
     );
