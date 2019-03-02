@@ -1,0 +1,66 @@
+@import 'styles/variables.scss';
+
+.root {
+  position: fixed;
+  z-index: 1;
+  height: $fixed-header-height;
+  width: 100%;
+  background: $white;
+}
+
+.main {
+  display: flex;
+  width: 100%;
+  max-width: $page-max-width;
+  margin: 0 auto;
+}
+
+.language {
+  width: 120px;
+}
+
+.rows {
+  width: 100%;
+}
+
+.row1 {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+
+.gender {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 186px;
+  height: 26px;
+  z-index: 1;
+}
+
+.shortcuts {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.row2 {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.nav {
+  width: 100%;
+}
+
+.searchContainer {
+  width: 100%;
+  max-width: 232px;
+}

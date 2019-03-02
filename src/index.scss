@@ -7,12 +7,27 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
   padding: 0;
   font-family: $font-text, sans-serif;
   font-size: 16px;
-  font-weight: 400px;
+  font-weight: 400;
+  line-heigth: 1.5;
+  color: $black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-family: $font-text, sans-serif;
+  color: $black;
+  text-decoration: underline;
+  transition: opacity 150ms;
+
+  &:hover,
+  &:active {
+    opacity: .5;
+  }
 }

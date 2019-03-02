@@ -1,11 +1,13 @@
 @import '../../styles/variables.scss';
 
+$input-height: 45px;
+
 .root {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   min-width: 100px;
-  max-width: 250px;
   height: 40px;
   background-color: $white;
   padding: 0;
@@ -15,8 +17,8 @@
   border-radius: 4px;
 }
 
-.searchField {
-  height: 40px;
+.input {
+  height: 100%;
   border: none;
   font-size: 15px;
   background-color: transparent;
@@ -28,7 +30,7 @@
   }
 }
 
-.searchInput {
+.icon {
   display: flex;
   align-items: center;
   height: 100%;

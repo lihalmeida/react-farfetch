@@ -14,7 +14,7 @@ export class Button extends React.Component {
     isSizeFill: PropTypes.bool,
     theme: PropTypes.oneOf(Object.values(THEME)),
     children: PropTypes.node
-  }
+  };
 
   static defaultProps = {
     isSizeFill: false,

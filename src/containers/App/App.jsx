@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Route, Switch } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
-import Home from '../Home/Home';
-import Catalog from '../Catalog/Catalog';
-import Product from '../Product/Product';
-import NotFound from '../NotFound/NotFound';
-import Components from '../Components/Components';
-
+import Home from 'containers/Home/Home';
+import Catalog from 'containers/Catalog/Catalog';
+import Product from 'containers/Product/Product';
+import NotFound from 'containers/NotFound/NotFound';
+import Components from 'containers/Components/Components';
+import Header from 'components/Header/Header';
 
 import classes from './App.module.scss';
 
@@ -17,22 +17,18 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <BrowserRouter>
-          <div className={classes.header}>
-            <nav>
-              <Link to="/">Home</Link>&nbsp;
-              <Link to="/products">Catalog</Link>&nbsp;
-              <Link to="/products/50">Product#50</Link>&nbsp;
-              <Link to="/404">Not Found</Link>&nbsp;
-              <Link to="/components">Components</Link>&nbsp;
-            </nav>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/products" component={Catalog} />
-              <Route exact path="/products/:id" component={Product} />
-              <Route exact path="/components" component={Components} />
-              <Route component={NotFound} />
-            </Switch>
-          </div>
+          <React.Fragment>
+            <Header />
+            <main className={classes.main}>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/products" component={Catalog} />
+                <Route exact path="/products/:id" component={Product} />
+                <Route exact path="/components" component={Components} />
+                <Route component={NotFound} />
+              </Switch>
+            </main>
+          </React.Fragment>
         </BrowserRouter>
       </div>
     );

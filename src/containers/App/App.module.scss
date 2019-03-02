@@ -1,9 +1,13 @@
 @import '../../styles/variables.scss';
 
 .root {
-  text-align: center;
+
 }
 
-.header {
-  margin: 10px;
+.main {
+  width: 100%;
+  // max-width: $page-max-width;
+  margin: 0 auto;
+
+  background: lightcyan;
 }

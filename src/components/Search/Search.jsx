@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from 'components/Icon/Icon';
+import { Icon, ICON } from 'components/Icon/Icon';
 import classes from './Search.module.scss';
 
 export class Search extends React.Component {
@@ -35,7 +35,7 @@ export class Search extends React.Component {
     return (
       <div className={classes.root}>
         <input
-          className={classes.searchField}
+          className={classes.input}
           type="search"
           value={this.props.value}
           placeholder={this.props.placehold}
@@ -45,10 +45,10 @@ export class Search extends React.Component {
         />
         <div
           role="button"
-          className={classes.searchInput}
+          className={classes.icon}
           onClick={this.props.onSubmit}
         >
-          <Icon width={30} height={30} icon="search" />
+          <Icon width={30} height={30} icon={ICON.search} />
         </div>
       </div>
     );
