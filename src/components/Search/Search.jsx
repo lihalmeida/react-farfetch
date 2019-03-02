@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import Icon from 'components/Icon/Icon';
 import classes from './Search.module.scss';
 
 export class Search extends React.Component {
@@ -20,7 +20,10 @@ export class Search extends React.Component {
   };
 
   handleKeyUp = (e) => {
-    console.log('key up', e);
+    const ENTER = 13
+    if (e.keyCode === ENTER) {
+      this.props.onSubmit();
+    }
   }
 
   handleSubmit = (e) => {
@@ -30,24 +33,24 @@ export class Search extends React.Component {
 
   render() {
     return (
-      <form className={classes.root}>
+      <div className={classes.root}>
         <input
           className={classes.searchField}
           type="search"
           value={this.props.value}
           placeholder={this.props.placehold}
           onChange={this.props.onChange}
-          onKeyUp={this.props.handleKeyUp}
-          onSubmit={this.props.handleSubmit}
+          onKeyUp={this.handleKeyUp}
+          onSubmit={this.handleSubmit}
         />
-        <button
-          type="button"
+        <div
+          role="button"
           className={classes.searchInput}
           onClick={this.props.onSubmit}
         >
-          <span>a</span>
-        </button>
-      </form>
+          <Icon width={30} height={30} icon="search" />
+        </div>
+      </div>
     );
   }
 }

@@ -11,7 +11,8 @@ class Components extends Component {
   state = {
     email: '',
     password: '',
-    search: ''
+    search: '',
+    size: '0'
   };
 
   handleEmailChange = (e) => {
@@ -24,14 +25,26 @@ class Components extends Component {
 
   handleSearchChange = (e) => {
     console.log('* search change *');
-    this.setState({ search: e.target.value })
+    this.setState({ search: e.target.value });
   }
 
   handleSearchSubmit = (e) => {
     console.log('Submit');
   }
 
+  handleChoiceSelect = (e) => {
+    console.log('* size change *');
+    this.setState({ size: e.target.value });
+  }
+
   render() {
+    const sizes = [
+      { value: '0',  label: 'Select size - France', disabled: true },
+      { value: '34', label: '34 FR' },
+      { value: '36', label: '36 FR' },
+      { value: '38', label: '38 FR' }
+    ];
+
     return (
       <div className={classes.root}>
         <h1>UI components</h1>
@@ -68,7 +81,11 @@ class Components extends Component {
               onChange={this.handleSearchChange}
               onSubmit={this.handleSearchSubmit}
             />
-            <Select />
+            <Select
+              options={sizes}
+              value={this.state.size}
+              onChange={this.handleChoiceSelect}
+            />
             <Input
               type="email"
               placeholder="E-mail"
