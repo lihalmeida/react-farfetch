@@ -1,3 +1,27 @@
+@import 'styles/variables.scss';
+
 .root {
 
+}
+
+.gender {
+  display: inline-block;
+  margin-right: 24px;
+}
+
+.genderRoot {
+  font-size: 15px;
+  font-family: $font-text;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    font-family: $font-bold;
+    opacity: 1;
+  }
+}
+
+.genderMenu {
+  display: none;
+  position: absolute;
 }

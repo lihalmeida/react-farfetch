@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from 'components/Navigation/Navigation';
 import Search from 'components/Search/Search';
-import { GENDER, linkToShopping, linkToHome } from 'constants/routes';
+import { linkToHome } from 'constants/routes';
 import { translate as t } from 'i18n/translate';
 import logoImg from 'assets/images/farfetch-logo.svg';
 
@@ -18,17 +18,9 @@ class Header extends Component {
           </div>
           <div className={classes.rows}>
             <div className={classes.row1}>
-              <nav className={classes.gender}>
-                <Link to={ linkToShopping(GENDER.women) }>
-                  {t('NavigationWomen')}
-                </Link>
-                <Link to={ linkToShopping(GENDER.men) }>
-                  {t('NavigationMen')}
-                </Link>
-                <Link to={ linkToShopping(GENDER.kids) }>
-                  {t('NavigationKids')}
-                </Link>
-              </nav>
+              <div className={classes.navigation}>
+                <Navigation />
+              </div>
               <Link className={classes.logo} to={ linkToHome() }>
                 <img src={ logoImg } alt={ t('HeaderLogoAlt') } />
               </Link>
@@ -37,9 +29,6 @@ class Header extends Component {
               </div>
             </div>
             <div className={classes.row2}>
-              <div className={classes.nav}>
-                <Navigation />
-              </div>
               <div className={classes.search}>
                 <Search />
               </div>
