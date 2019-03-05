@@ -33,6 +33,7 @@
   flex: 1;
   display: flex;
   justify-content: flex-start;
+
 }
 
 .logo {
@@ -42,6 +43,10 @@
   width: 186px;
   height: 26px;
   z-index: 1;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .shortcuts {

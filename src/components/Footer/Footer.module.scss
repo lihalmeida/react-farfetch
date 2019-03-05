@@ -1,0 +1,48 @@
+@import '../../styles/variables.scss';
+
+.root {
+  max-width: 100wv;
+  background-color: $black;
+  color: $white;
+}
+
+.row1 {
+  display: flex;
+  background-color: $light-gray-2;
+
+  & .growRow1 {
+    border-right: 1px solid white;
+  }
+
+  & a {
+    text-decoration: none;
+  }
+
+  & h4 {
+    color: $white;
+    font-family: $font-bold;
+    font-size: 16px;
+    line-height: 23px;
+    padding: 0 10px;
+    margin: 10px 0;
+  }
+}
+
+.row2 {
+  width: $page-max-width;
+  display: flex;
+
+  & h3 {
+    font-family: $font-condensed;
+    font-size: 13px;
+  }
+}
+
+.row3 {
+  width: $page-max-width;
+}
+
+
+.growRow1 {
+  flex-grow: 1;
+}

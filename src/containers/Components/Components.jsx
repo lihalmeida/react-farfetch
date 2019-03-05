@@ -4,6 +4,9 @@ import { Icon, ICON } from 'components/Icon/Icon.jsx'
 import Input from 'components/Input/Input.jsx'
 import Search from 'components/Search/Search.jsx';
 import Select from 'components/Select/Select.jsx';
+import ProductCard from 'components/ProductCard/ProductCard.jsx';
+import Filter from 'components/Filter/Filter.jsx';
+import Footer from 'components/Footer/Footer.jsx';
 import classes from './Components.module.scss';
 
 class Components extends Component {
@@ -12,7 +15,8 @@ class Components extends Component {
     email: '',
     password: '',
     search: '',
-    size: '0'
+    size: '0',
+    wishItem: false
   };
 
   handleEmailChange = (e) => {
@@ -37,6 +41,13 @@ class Components extends Component {
     this.setState({ size: e.target.value });
   }
 
+  handleProductWish = () => {
+    this.setState({ wishItem: !(this.state.wishItem) });
+
+    console.log(this.state.wishItem);
+    return this.state.wishItem;
+  }
+
   render() {
     const sizes = [
       { value: '0',  label: 'Select size - France', disabled: true },
@@ -44,6 +55,15 @@ class Components extends Component {
       { value: '36', label: '36 FR' },
       { value: '38', label: '38 FR' }
     ];
+
+    const products = {
+      productX: {
+        isNewSeason: true,
+        productDesigner: 'Alessandra Rich',
+        productName: 'crystal embellished swimsuit',
+        productPrice: 831
+      }
+    };
 
     return (
       <div className={classes.root}>
@@ -127,6 +147,7 @@ class Components extends Component {
             <div><Icon icon={ICON.sort} /><span>sort</span></div>
             <div><Icon icon={ICON.star} /><span>star</span></div>
             <div><Icon icon={ICON.starGray} /><span>starGray</span></div>
+            <div><Icon icon={ICON.starBlack} /><span>starBlack</span></div>
             <div><Icon icon={ICON.starRounded} /><span>starRounded</span></div>
             <div><Icon icon={ICON.tags} /><span>tags</span></div>
             <div><Icon icon={ICON.twitter} /><span>twitter</span></div>
@@ -134,6 +155,20 @@ class Components extends Component {
             <div><Icon icon={ICON.zoomPlus} /><span>zoomPlus</span></div>
           </div>
         </section>
+        <section>
+          <ProductCard
+            isNewSeason={products.productX.isNewSeason}
+            productDesigner={products.productX.productDesigner}
+            productName={products.productX.productName}
+            productPrice={products.productX.productPrice}
+            onClick={this.handleProductWish}
+            isAWishItem={this.state.wishItem}
+          />
+        </section>
+        <section>
+          <Filter />
+        </section>
+        <Footer />
       </div>
     );
   }
