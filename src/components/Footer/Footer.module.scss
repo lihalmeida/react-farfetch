@@ -1,48 +1,150 @@
 @import '../../styles/variables.scss';
 
 .root {
-  max-width: 100wv;
-  background-color: $black;
+  background: $black;
   color: $white;
+  text-align: left;
+
+  & section {
+    margin: 0;
+    padding: 0;
+  }
 }
 
-.row1 {
-  display: flex;
-  background-color: $light-gray-2;
+.section1 {
+  background: $light-gray-2;
+}
 
-  & .growRow1 {
-    border-right: 1px solid white;
+.section2 {
+  padding-bottom: 40px;
+}
+
+.globalContainer {
+  display: flex;
+  max-width: $page-max-width;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.baseline {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.containerSection1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkSection1 {
+  color: $white;
+  font-family: $font-bold;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 10px 0;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.container1 {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  & a,
+  span {
+    color: $white;
+    font-size: 13px;
+    line-height: 21px;
+    text-decoration: none;
+    margin: 0;
   }
 
   & a {
-    text-decoration: none;
+    text-decoration: underline;
   }
 
-  & h4 {
+  & span {
+    padding: 10px 0 20px 10px;
+  }
+
+  & .mediaIcons i {
+    font-size: 24px;
+    padding: 10px 15px 0 10px;
+  }
+}
+
+.container2 {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  & span {
     color: $white;
-    font-family: $font-bold;
-    font-size: 16px;
-    line-height: 23px;
-    padding: 0 10px;
-    margin: 10px 0;
-  }
-}
-
-.row2 {
-  width: $page-max-width;
-  display: flex;
-
-  & h3 {
-    font-family: $font-condensed;
     font-size: 13px;
+    line-height: 21px;
+    margin: 0;
+    padding: 10px 0 20px 10px;
   }
 }
 
-.row3 {
-  width: $page-max-width;
+.container2Cont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .mediaIcons i {
+    font-size: 18px;
+    padding: 10px 15px 0 10px;
+  }
+}
+
+.container3 {
+  display: inline-flex;
+}
+
+.aboutAndService {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+
+  & a {
+    color: $white;
+    font-size: 13px;
+    line-height: 21px;
+    text-decoration: none;
+    margin: 0;
+    padding: 5px 0 0 10px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.footerTitle {
+  color: $light-gray-2;
+  font-family: $font-condensed;
+  font-size: 13px;
+  letter-spacing: 3px;
+  line-height: 22px;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 10px 0 5px 10px;
 }
 
 
-.growRow1 {
-  flex-grow: 1;
+.section3 {
+  color: $light-gray-2;
+  font-size: 11px;
+  padding: 0 0 20px 10px;
 }
