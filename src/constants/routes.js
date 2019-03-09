@@ -3,7 +3,8 @@ import { getLanguage } from 'i18n/translate'
 export const ROUTER_PATHS = {
   home: '/',
   login: '/:lang/login',
-  shopping: '/:lang/shopping/:gender/items',
+  shoppingGenderHome: '/:lang/shopping/:gender/items.aspx',
+  shopping: '/:lang/shopping/:gender/:category/items.aspx',
   product: ':lang/shopping/:gender/:productid',
   ui: '/ui'
 };
@@ -30,7 +31,7 @@ export const linkToShopping = (gender, category='', lang='') => {
     url += `/${category}`;
   }
 
-  return `${url}/items`;
+  return `${url}/items.aspx`;
 };
 
 export const linkToProduct = (gender, productId, lang='') => {

@@ -1,5 +1,6 @@
 {
   "HeaderLogoAlt": "Farfetch logo",
+  "HeaderMissingGender": "Please select a gender to shop",
   "NavigationWomen": "Women",
   "NavigationWomenNewIn": "New In",
   "NavigationWomenDesigners": "Designers",
@@ -25,8 +26,8 @@
   "NavigationKids": "Kids",
   "NavigationKidsNewIn": "New in",
   "NavigationKidsDesigners": "Designers",
-  "NavigationKidsBaby girls": "Baby girls",
-  "NavigationKidsBaby boys": "Baby boys",
+  "NavigationKidsBabyGirls": "Baby girls",
+  "NavigationKidsBabyBoys": "Baby boys",
   "NavigationKidsGirls": "Girls",
   "NavigationKidsBoys": "Boys",
   "NavigationKidsShoes": "Shoes",

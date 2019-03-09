@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, THEME } from 'components/Button/Button.jsx';
 import { Icon, ICON } from 'components/Icon/Icon.jsx'
 import Input from 'components/Input/Input.jsx'
@@ -7,6 +8,12 @@ import Select from 'components/Select/Select.jsx';
 import classes from './Components.module.scss';
 
 class Components extends Component {
+
+  static propTypes = {
+    match: PropTypes.object.isRequired,    // from react-router
+    location: PropTypes.object.isRequired, // from react-router
+    history: PropTypes.object.isRequired   // from react-router
+  };
 
   state = {
     email: '',

@@ -6,8 +6,7 @@
 
 .main {
   width: 100%;
-  // max-width: $page-max-width;
+  max-width: $page-max-width;
   margin: 0 auto;
-
-  background: lightcyan;
+  padding-top: $fixed-header-height;
 }
