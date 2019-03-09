@@ -8,7 +8,7 @@ import Product from 'containers/Product/Product';
 import NotFound from 'containers/NotFound/NotFound';
 import Components from 'containers/Components/Components';
 import Header from 'components/Header/Header';
-import { ROUTER_PATHS } from 'constants/routes';
+import { ROUTER_PATHS } from 'utils/routes';
 
 import classes from './App.module.scss';
 

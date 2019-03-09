@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { GENDER, linkToShopping } from 'constants/routes';
+import { GENDER, linkToShopping } from 'utils/routes';
+import { CATEGORIES } from 'utils/categories';
 import { Link } from 'react-router-dom';
 import { translate as t } from 'i18n/translate';
 import classes from './Navigation.module.scss';
@@ -10,96 +11,96 @@ import classes from './Navigation.module.scss';
 const LINKS_WOMEN = [
   {
     text: t('NavigationWomenNewIn'),
-    url: linkToShopping(GENDER.women, '1111')
+    url: '#'
   }, {
     text: t('NavigationWomenDesigners'),
-    url: linkToShopping(GENDER.women, '1111')
+    url: '#'
   }, {
     text: t('NavigationWomenClothing'),
-    url: linkToShopping(GENDER.women, '1111')
+    url: linkToShopping(GENDER.women, CATEGORIES.WOMEN_CLOTHING.route)
   }, {
     text: t('NavigationWomenShoes'),
-    url: linkToShopping(GENDER.women, '1111')
+    url: linkToShopping(GENDER.women, CATEGORIES.WOMEN_SHOES.route)
   }, {
     text: t('NavigationWomenBags'),
-    url: linkToShopping(GENDER.women, '1111')
+    url: linkToShopping(GENDER.women, CATEGORIES.WOMEN_BAGS.route)
   }, {
     text: t('NavigationWomenAccessories'),
-    url: linkToShopping(GENDER.women, '1111')
+    url: linkToShopping(GENDER.women, CATEGORIES.WOMEN_ACCESSORIES.route)
   }, {
     text: t('NavigationWomenJewellery'),
-    url: linkToShopping(GENDER.women, '1111')
+    url: linkToShopping(GENDER.women, CATEGORIES.WOMEN_JEWELRY.route)
   }, {
     text: t('NavigationWomenVintage'),
-    url: linkToShopping(GENDER.women, '1111')
+    url: linkToShopping(GENDER.women, CATEGORIES.WOMEN_VINTAGE.route)
   }, {
     text: t('NavigationWomenEditorial'),
-    url: linkToShopping(GENDER.women, '1111')
+    url: '#'
   }, {
     text: t('NavigationWomenSale'),
-    url: linkToShopping(GENDER.women, '1111'),
+    url: '#',
     isRed: true
   }
 ];
 const LINKS_MEN = [
   {
     text: t('NavigationMenNewIn'),
-    url: linkToShopping(GENDER.men, '2222')
+    url: '#'
   }, {
     text: t('NavigationMenDesigners'),
-    url: linkToShopping(GENDER.men, '2222')
+    url: '#'
   }, {
     text: t('NavigationMenClothing'),
-    url: linkToShopping(GENDER.men, '2222')
+    url: linkToShopping(GENDER.men, CATEGORIES.MEN_CLOTHING.route)
   }, {
     text: t('NavigationMenShoes'),
-    url: linkToShopping(GENDER.men, '2222')
+    url: linkToShopping(GENDER.men, CATEGORIES.MEN_SHOES.route)
   }, {
     text: t('NavigationMenTrainers'),
-    url: linkToShopping(GENDER.men, '2222')
+    url: linkToShopping(GENDER.men, CATEGORIES.MEN_SNEAKERS.route)
   }, {
     text: t('NavigationMenBags'),
-    url: linkToShopping(GENDER.men, '2222')
+    url: linkToShopping(GENDER.men, CATEGORIES.MEN_BAGS.route)
   }, {
     text: t('NavigationMenAccessories'),
-    url: linkToShopping(GENDER.men, '2222')
+    url: linkToShopping(GENDER.men, CATEGORIES.MEN_ACCESSORIES.route)
   }, {
     text: t('NavigationMenWatches'),
-    url: linkToShopping(GENDER.men, '2222')
+    url: linkToShopping(GENDER.men, CATEGORIES.MEN_WATCHES.route)
   }, {
     text: t('NavigationMenEditorial'),
-    url: linkToShopping(GENDER.men, '2222')
+    url: '#'
   }, {
     text: t('NavigationMenSale'),
-    url: linkToShopping(GENDER.men, '2222'),
+    url: '#',
     isRed: true
   },
 ];
 const LINKS_KIDS = [
   {
     text: t('NavigationKidsNewIn'),
-    url: linkToShopping(GENDER.kids, '333333')
+    url: '#',
   }, {
     text: t('NavigationKidsDesigners'),
-    url: linkToShopping(GENDER.kids, '333333')
+    url: '#',
   }, {
     text: t('NavigationKidsBabyGirls'),
-    url: linkToShopping(GENDER.kids, '333333')
+    url: linkToShopping(GENDER.kids, CATEGORIES.KIDS_BABY_GIRL_CLOTHING.route)
   }, {
     text: t('NavigationKidsBabyBoys'),
-    url: linkToShopping(GENDER.kids, '333333')
+    url: linkToShopping(GENDER.kids, CATEGORIES.KIDS_BABY_BOY_CLOTHING.route)
   }, {
     text: t('NavigationKidsGirls'),
-    url: linkToShopping(GENDER.kids, '333333')
+    url: linkToShopping(GENDER.kids, CATEGORIES.KIDS_GIRLS_CLOTHING.route)
   }, {
     text: t('NavigationKidsBoys'),
-    url: linkToShopping(GENDER.kids, '333333')
+    url: linkToShopping(GENDER.kids, CATEGORIES.KIDS_BOYS_CLOTHING.route)
   }, {
     text: t('NavigationKidsShoes'),
-    url: linkToShopping(GENDER.kids, '333333')
+    url: '#',
   }, {
     text: t('NavigationKidsSale'),
-    url: linkToShopping(GENDER.kids, '333333'),
+    url: '#',
     isRed: true
   },
 ];
