@@ -21,6 +21,8 @@ $card-image-fade: opacity 300ms ease-in-out;
 .cardImg {
   position: relative;
   width: 100%;
+  min-width: 220px;
+  min-height: 293px;
 
   & img {
     width: 100%;

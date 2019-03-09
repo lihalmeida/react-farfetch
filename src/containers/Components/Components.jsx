@@ -159,10 +159,12 @@ class Components extends Component {
         </section>
         <section>
           <ProductCard
-            isNewSeason={products.productX.isNewSeason}
-            productDesigner={products.productX.productDesigner}
-            productName={products.productX.productName}
-            productPrice={products.productX.productPrice}
+            merchandiseLabel="New Season"
+            cardImg="https://cdn-images.farfetch-contents.com/11/93/24/67/11932467_9126356_300.jpg"
+            cardImgHover="https://cdn-images.farfetch-contents.com/11/93/24/67/11932467_9126375_300.jpg"
+            productDesigner="Robin Singer"
+            productName="Dress"
+            productPrice="$ 35,000"
             onClick={this.handleProductWish}
             isAWishItem={this.state.wishItem}
           />

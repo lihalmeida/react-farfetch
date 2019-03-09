@@ -1,9 +1,9 @@
-import { getLanguage } from 'i18n/translate'
+import { getLanguage } from 'i18n/translate';
 
 export const ROUTER_PATHS = {
   home: '/',
-  login: '/:lang/login',
-  shopping: '/:lang/shopping/:gender/items',
+  login: '/:lang/login.aspx',
+  shopping: '/:lang/shopping/:gender/:category/items.aspx',
   product: ':lang/shopping/:gender/:productid',
   ui: '/ui'
 };

@@ -29,7 +29,7 @@ export class SingleDropDownMenu extends React.Component {
             <span className={classes.icon}><Icon icon={ICON.caretDownSmall} /></span>
           </div>
           <ul className={classes.dropdownContent}>
-            <li active>Our Picks</li>
+            <li>Our Picks</li>
             <li>Newest First</li>
             <li>Price: high to low</li>
             <li>Price: low to high</li>

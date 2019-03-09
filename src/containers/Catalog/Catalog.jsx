@@ -1,100 +1,123 @@
 import React, { Component } from 'react';
-import { ReactComponent as prodId1 } from 'assets/images/prod-id1.jpg';
-import { ReactComponent as prodId1Hover } from 'assets/images/prod-id1-hover.jpg';
-import { ReactComponent as prodId2 } from 'assets/images/prod-id2.jpg';
-import { ReactComponent as prodId2Hover } from 'assets/images/prod-id2-hover.jpg';
-import { ReactComponent as prodId3 } from 'assets/images/prod-id3.jpg';
-import { ReactComponent as prodId3Hover } from 'assets/images/prod-id3-hover.jpg';
-import { ReactComponent as prodId4 } from 'assets/images/prod-id4.jpg';
-import { ReactComponent as prodId4Hover } from 'assets/images/prod-id4-hover.jpg';
-import { ReactComponent as prodId5 } from 'assets/images/prod-id5.jpg';
-import { ReactComponent as prodId5Hover } from 'assets/images/prod-id5-hover.jpg';
-import { ReactComponent as prodId6 } from 'assets/images/prod-id6.jpg';
-import { ReactComponent as prodId6Hover } from 'assets/images/prod-id6-hover.jpg';
-import { ReactComponent as prodId7 } from 'assets/images/prod-id7.jpg';
-import { ReactComponent as prodId7Hover } from 'assets/images/prod-id7-hover.jpg';
-import { ReactComponent as prodId8 } from 'assets/images/prod-id8.jpg';
-import { ReactComponent as prodId8Hover } from 'assets/images/prod-id8-hover.jpg';
 import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu.jsx';
 import ProductCard from 'components/ProductCard/ProductCard.jsx';
 import Footer from 'components/Footer/Footer.jsx';
+import { getShoppingProducts } from 'services/shopping';
 import classes from './Catalog.module.scss';
 
 class Catalog extends Component {
   state = {
+    isLoading: false,
+    isLoadedSuccess: false,
+    isLoadedFailed: false,
+    products: [],
     wishItem: false
   };
+
+  componentDidMount() {
+    this.fetchProducts();
+  }
+
+  fetchProducts() {
+    // 0) ainda não começou o pedido -> branco
+    // 1) fetch dos dados -> loading...
+    // 2) se for successo -> renderizar os products
+    // 3) se for erro -> renderiza mensagem de erro
+
+    const { category, gender } = this.props.match.params;
+    const search = new URLSearchParams(this.props.location.search);
+    const query = {
+      page: search.get('page') || undefined,
+      view: search.get('view') || '180',
+      sort: search.get('sort') || undefined,
+      pagetype: 'Shopping',
+      gender: gender,         // 'Women',
+      pricetype: 'FullPrice',
+      category: category      // '136293'
+    };
+
+    this.setState({ isLoading: true });
+
+    return getShoppingProducts(query)
+      .then(response => {
+        this.setState({
+          isLoading: false,
+          isLoaded: true,
+          isLoadedFailed: false,
+          products: response.products
+        });
+      })
+      .catch(() => {
+        this.setState({
+          isLoading: false,
+          isLoaded: true,
+          isLoadedFailed: true
+        });
+      });
+  }
 
   handleProductWish = () => {
     this.setState({ wishItem: !(this.state.wishItem) });
   }
 
+  renderProductCard = (product) => {
+    return (
+       <div className={classes.card} key={product.id}>
+        <ProductCard
+          merchandiseLabel={product.merchandiseLabel}
+          cardImg={product.images.cutOut}
+          cardImgHover={product.images.model}
+          productDesigner={product.brand.name}
+          productName={product.shortDescription}
+          productPrice={product.priceInfo.formattedFinalPrice}
+          onClick={this.handleProductWish}
+          isAWishItem={this.state.wishItem}
+        />
+      </div>
+    );
+  }
+
+  renderLoader() {
+    return(
+      <div className={classes.loading}>
+        LOADING...
+      </div>
+    );
+  }
+
+  renderError() {
+    return(
+      <div className={classes.loading}>
+        FAILED TO LOAD PRODUCTS...
+      </div>
+    );
+  }
+
+  renderProducts() {
+    return (
+      <div className={classes.catalog}>
+        <div className={classes.filter}>Filter</div>
+        <div className={classes.cardsContainer}>
+          { this.state.products.map(this.renderProductCard) }
+        </div>
+      </div>
+    );
+  }
+
   render() {
-    const products = [
-      {
-        cardImg: prodId1,
-        cardImgHover: prodId1Hover,
-        isNewSeason: true,
-        productDesigner: 'Alessandra Rich',
-        productName: 'Crystal embellished swimsuit',
-        productPrice: 831
-      },
-      {
-        cardImg: prodId2,
-        cardImgHover: prodId2Hover,
-        isNewSeason: false,
-        productDesigner: 'Marysia',
-        productName: 'Santa Barbara one-shoulder scalloped bikini',
-        productPrice: 325
-      },
-      {
-        cardImg: prodId3,
-        cardImgHover: prodId3Hover,
-        isNewSeason: true,
-        productDesigner: 'Gucci',
-        productName: 'Logo printed swimsuit',
-        productPrice: 320
-      },
-      {
-        cardImg: prodId4,
-        cardImgHover: prodId4Hover,
-        isNewSeason: true,
-        productDesigner: 'Oseree',
-        productName: 'Sequinned halterneck swimsui',
-        productPrice: 232
-      },
-      {
-        cardImg: prodId5,
-        cardImgHover: prodId5Hover,
-        isNewSeason: true,
-        productDesigner: 'Ganni',
-        productName: 'Leopard print halterneck swimsuit',
-        productPrice: 137
-      },
-      {
-        cardImg: prodId6,
-        cardImgHover: prodId6Hover,
-        isNewSeason: true,
-        productDesigner: 'Isabel Marant',
-        productName: 'Sicilya swimsuit',
-        productPrice: 190
-      },
-      {
-        cardImg: prodId7,
-        cardImgHover: prodId7Hover,
-        isNewSeason: true,
-        productDesigner: 'Adriana Degreas',
-        productName: 'Cutout triangle top high waist bikini',
-        productPrice: 500
-      },
-      {
-        cardImg: prodId8,
-        cardImgHover: prodId8Hover,
-        isNewSeason: true,
-        productDesigner: 'Marysia',
-        productName: 'Broadway tied scalloped swimsuit',
-        productPrice: 383}
-    ];
+    let {
+      isLoading,
+      isLoadedFailed
+    } = this.state;
+    let content;
+
+    if (isLoading) {
+      content = this.renderLoader();
+    } else if (isLoadedFailed) {
+      content = this.renderError();
+    } else {
+      content = this.renderProducts();
+    }
 
     return (
       <div className={classes.root}>
@@ -113,30 +136,7 @@ class Catalog extends Component {
               <SingleDropDownMenu />
             </div>
           </div>
-          <div className={classes.catalog}>
-            <div className={classes.filter}>Filter</div>
-            <div className={classes.cardsContainer}>
-              {
-                products.map( (product, idx) => {
-                  return (
-                    <div className={classes.card}>
-                      <ProductCard
-                        key={idx}
-                        isNewSeason={product.isNewSeason}
-                        cardImg={product.cardImg}
-                        cardImgHover={product.cardImgHover}
-                        productDesigner={product.productDesigner}
-                        productName={product.productName}
-                        productPrice={product.productPrice}
-                        onClick={this.handleProductWish}
-                        isAWishItem={this.state.wishItem}
-                      />
-                    </div>
-                  )
-                })
-              }
-            </div>
-          </div>
+          { content }
         </div>
         <Footer />
       </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { linkToHome, linkToShopping, linkToProduct, linkToUi } from 'constants/routes';
 
 import classes from './Navigation.module.scss';
 
@@ -7,11 +8,10 @@ class Navigation extends Component {
   render() {
     return (
       <nav className={classes.root}>
-        <Link to="/">Home</Link>&nbsp;
-        <Link to="/products">Catalog</Link>&nbsp;
-        <Link to="/products/50">Product#50</Link>&nbsp;
-        <Link to="/404">Not Found</Link>&nbsp;
-        <Link to="/components">Components</Link>&nbsp;
+        <Link to={linkToHome()}>Home</Link>&nbsp;
+        <Link to={linkToShopping()}>Catalog</Link>&nbsp;
+        <Link to={linkToProduct()}>Product#50</Link>&nbsp;
+        <Link to={linkToUi()}>Components</Link>&nbsp;
       </nav>
     );
   }

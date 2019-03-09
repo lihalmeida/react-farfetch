@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classes from './Footer.module.scss';
 
 
@@ -30,7 +29,7 @@ export class Footer extends React.Component {
               <div>
                 <h5 className={classes.footerTitle}>FARFETCH APP</h5>
                 <div className={classes.mediaIcons}>
-                  <i class="fas fa-mobile-alt"></i>
+                  <i className="fas fa-mobile-alt"></i>
                   <a href="/">Farfetch App for iOS and Android</a>
                 </div>
               </div>
@@ -43,13 +42,13 @@ export class Footer extends React.Component {
               <div className={classes.container2Cont}>
                 <h5 className={classes.footerTitle}>FOLLOW US</h5>
                 <div className={classes.mediaIcons}>
-                  <i class="fab fa-instagram"></i>
-                  <i class="fab fa-facebook-f"></i>
-                  <i class="fab fa-twitter"></i>
-                  <i class="fab fa-snapchat-ghost"></i>
-                  <i class="fab fa-pinterest-p"></i>
-                  <i class="fab fa-youtube"></i>
-                  <i class="fab fa-google-plus-g"></i>
+                  <i className="fab fa-instagram"></i>
+                  <i className="fab fa-facebook-f"></i>
+                  <i className="fab fa-twitter"></i>
+                  <i className="fab fa-snapchat-ghost"></i>
+                  <i className="fab fa-pinterest-p"></i>
+                  <i className="fab fa-youtube"></i>
+                  <i className="fab fa-google-plus-g"></i>
                 </div>
               </div>
             </div>
