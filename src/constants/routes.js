@@ -1,18 +1,12 @@
-import { getLanguage } from 'i18n/translate'
+import { getLanguage } from 'i18n/translate';
 
 export const ROUTER_PATHS = {
   home: '/',
-  login: '/:lang/login',
+  login: '/:lang/login.aspx',
   shoppingGenderHome: '/:lang/shopping/:gender/items.aspx',
   shopping: '/:lang/shopping/:gender/:category/items.aspx',
   product: ':lang/shopping/:gender/:productid',
   ui: '/ui'
-};
-
-export const GENDER = {
-  women: 'women',
-  men: 'men',
-  kids: 'kids'
 };
 
 export const linkToHome = () => ROUTER_PATHS.home;

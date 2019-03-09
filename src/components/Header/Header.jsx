@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Navigation from 'components/Navigation/Navigation';
 import Search from 'components/Search/Search';
-import { linkToHome } from 'utils/routes';
+import { linkToHome } from 'constants/routes';
 import { translate as t } from 'i18n/translate';
 import logoImg from 'assets/images/farfetch-logo.svg';
 

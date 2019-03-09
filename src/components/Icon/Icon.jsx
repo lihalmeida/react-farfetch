@@ -24,8 +24,10 @@ import { ReactComponent as searchBigGray } from 'assets/icons/search-big-gray.sv
 import { ReactComponent as sort } from 'assets/icons/sort.svg';
 import { ReactComponent as star } from 'assets/icons/star.svg';
 import { ReactComponent as starGray } from 'assets/icons/star-gray.svg';
+import { ReactComponent as starBlack } from 'assets/icons/star-black.svg';
 import { ReactComponent as starRounded } from 'assets/icons/star-rounded.svg';
 import { ReactComponent as tags } from 'assets/icons/tags.svg';
+import { ReactComponent as thinArrowUp } from 'assets/icons/thin-arrow-up.svg';
 import { ReactComponent as twitter } from 'assets/icons/twitter.svg';
 import { ReactComponent as user } from 'assets/icons/user.svg';
 import { ReactComponent as zoomPlus } from 'assets/icons/zoom-plus.svg';
@@ -54,8 +56,10 @@ export const ICON = {
   sort: 'sort',
   star: 'star',
   starGray: 'starGray',
+  starBlack: 'starBlack',
   starRounded: 'starRounded',
   tags: 'tags',
+  thinArrowUp: 'thinArrowUp',
   twitter: 'twitter',
   user: 'user',
   zoomPlus: 'zoomPlus',
@@ -85,8 +89,10 @@ const svgByIcon = {
   [ICON.sort]: sort,
   [ICON.star]: star,
   [ICON.starGray]: starGray,
+  [ICON.starBlack]: starBlack,
   [ICON.starRounded]: starRounded,
   [ICON.tags]: tags,
+  [ICON.thinArrowUp]: thinArrowUp,
   [ICON.twitter]: twitter,
   [ICON.user]: user,
   [ICON.zoomPlus]: zoomPlus,

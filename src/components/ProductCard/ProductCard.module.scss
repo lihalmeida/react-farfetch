@@ -1,0 +1,105 @@
+@import '../../styles/variables.scss';
+
+$card-image-fade: opacity 300ms ease-in-out;
+
+.root {
+  display: inline-block;
+  position: relative;
+  width: 220px;
+  background: $white;
+  text-align: center;
+  list-style-type: none;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  color: $black;
+  text-decoration: none;
+}
+
+.cardImg {
+  position: relative;
+  width: 100%;
+  min-width: 220px;
+  min-height: 293px;
+
+  & img {
+    width: 100%;
+    // pointer-events: none;
+  }
+
+  &:hover {
+    & .imgMain { opacity: 0 }
+    & .imgHover { opacity: 1 }
+  }
+}
+
+.imgMain {
+  display: block;
+  opacity: 1;
+  transition: $card-image-fade;
+}
+
+.imgHover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: $card-image-fade;
+}
+
+.cardInfo {
+  position: relative;
+  width: 100%;
+  padding-top: 24px;
+
+  & .productDesigner {
+    font-family: $font-condensed;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    line-height: 23px;
+  }
+
+  & .productName {
+    font-size: 15px;
+    letter-spacing: normal;
+    line-height: 21.9px;
+  }
+
+  & .newSeason {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    color: #c4aa84;
+    padding-top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.productPrice {
+  font-size: 15px;
+  height: 33px;
+  letter-spacing: normal;
+  line-height: 21.9px;
+}
+
+.wishlistBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8
+  }
+}

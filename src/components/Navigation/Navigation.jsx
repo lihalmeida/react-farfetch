@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { GENDER, linkToShopping } from 'utils/routes';
-import { CATEGORIES } from 'utils/categories';
+import { linkToShopping, linkToUi } from 'constants/routes';
+import { GENDER } from 'constants/genders';
+import { CATEGORIES } from 'constants/categories';
 import { Link } from 'react-router-dom';
 import { translate as t } from 'i18n/translate';
 import classes from './Navigation.module.scss';
@@ -11,7 +12,7 @@ import classes from './Navigation.module.scss';
 const LINKS_WOMEN = [
   {
     text: t('NavigationWomenNewIn'),
-    url: '#'
+    url: linkToUi()
   }, {
     text: t('NavigationWomenDesigners'),
     url: '#'
@@ -45,7 +46,7 @@ const LINKS_WOMEN = [
 const LINKS_MEN = [
   {
     text: t('NavigationMenNewIn'),
-    url: '#'
+    url: linkToUi()
   }, {
     text: t('NavigationMenDesigners'),
     url: '#'
@@ -79,7 +80,7 @@ const LINKS_MEN = [
 const LINKS_KIDS = [
   {
     text: t('NavigationKidsNewIn'),
-    url: '#',
+    url: linkToUi()
   }, {
     text: t('NavigationKidsDesigners'),
     url: '#',
@@ -114,14 +115,23 @@ class Navigation extends Component {
     activeGender: ''
   };
 
-  renderLink(link, idx) {
+  handleLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  renderLink = (link, idx) => {
     const cNames = classNames({
       [classes.category]: true,
       [classes.red]: link.isRed
     });
 
     return (
-      <Link className={cNames} to={link.url} key={idx}>
+      <Link
+        key={idx}
+        className={cNames}
+        to={link.url}
+        onClick={this.handleLinkClick}
+      >
         <span>{link.text}</span>
       </Link>
     );

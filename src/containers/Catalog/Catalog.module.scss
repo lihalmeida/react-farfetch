@@ -1,5 +1,78 @@
 @import '../../styles/variables.scss';
 
 .root {
+  // here...
+}
+
+.globalContainer {
+  min-height: 600px;
+  max-width: $page-max-width;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.history {
+  color: $light-gray-1;
+  font-size: 13px;
+  line-height: 1.3;
   text-align: center;
+  padding: 0 0 12px 0;
+  margin: 0;
+}
+
+.category h1 {
+  font-family: $font-condensed;
+  font-size: 18px;
+  line-height: 1.55;
+  letter-spacing: 1.9px;
+  text-align: center;
+  padding: 0 0 10px 0;
+  margin: 0;
+}
+
+.unitsAndSort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  min-height: 44px;
+  padding-bottom: 50px;
+}
+
+.units {
+  font-size: 15px;
+  line-height: 20.54px;
+  margin-right: 24px;
+}
+
+.sort {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.catalog {
+  display: flex;
+}
+
+.filter {
+  background: lightyellow;
+  max-width: 300px;
+  width: 100%;
+  height: 100%;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  width: calc(100% / 3);
+  padding: 0 20px 60px;
 }

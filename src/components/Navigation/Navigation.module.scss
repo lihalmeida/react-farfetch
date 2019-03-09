@@ -102,6 +102,7 @@ $genderLinkFontActive: $font-bold;
   letter-spacing: 1.6px;
   color: $black;
   transition: color 150ms ease-in-out;
+  white-space: nowrap;
 
   &:hover {
     color: $black !important;
