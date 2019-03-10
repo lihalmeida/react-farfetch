@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'components/Select/Select.jsx';
 import { Button, THEME } from 'components/Button/Button.jsx';
+import PropTypes from 'prop-types';
 import Footer from 'components/Footer/Footer.jsx';
 import classes from './Product.module.scss';
 
@@ -13,6 +14,12 @@ class Product extends Component {
     console.log('* size change *');
     this.setState({ size: e.target.value });
   }
+
+  static propTypes = {
+    match: PropTypes.object.isRequired,    // from react-router
+    location: PropTypes.object.isRequired, // from react-router
+    history: PropTypes.object.isRequired   // from react-router
+  };
 
   render() {
     const sizes = [

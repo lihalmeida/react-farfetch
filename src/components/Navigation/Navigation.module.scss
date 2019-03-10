@@ -1,3 +1,120 @@
-.root {
+@import 'styles/variables.scss';
 
+$genderLinkFontNormal: $font-text;
+$genderLinkFontActive: $font-bold;
+
+.root {
+  // here...
+}
+
+.gender {
+  display: inline-block;
+  padding: 12px;
+
+  &:first-child {
+    padding-left: 0;
+  }
+}
+
+.genderRoot {
+  font-size: 15px;
+  font-family: $font-text;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+
+// active link will not be selected when mouse enters the container
+// also, it won't force the links below to be visible (they will be visible, if hovering them)
+.root:hover .genderActive {
+  & .genderRoot {
+    font-family: $genderLinkFontNormal;
+  }
+  & .genderMenu {
+    display: none;
+  }
+}
+
+// active link is bolder
+.genderActive .genderRoot {
+  font-family: $genderLinkFontActive;
+}
+
+// hovering gender is bolder (always)
+.gender:hover .genderRoot {
+  font-family: $genderLinkFontActive !important;
+}
+
+.genderMenu {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  min-height: 45px;
+  padding-top: 28px;
+  background: $white;
+}
+
+.gender:hover .genderMenu {
+  display: block !important;
+}
+
+.genderActive .genderMenu {
+  display: block;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+}
+
+.linksMain {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  max-width: $page-max-width;
+  margin: 0 auto;
+  padding-right: $header-padding-right;
+  padding-left: $header-padding-left;
+
+  &:hover {
+    & .category,
+    & .red {
+      color: $light-gray-2;
+    }
+  }
+}
+
+.category {
+  margin-right: 32px;
+  padding-top: 12px;
+  padding-bottom: 8px;
+  border-bottom: 4px solid transparent;
+  font-family: $font-condensed;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: $black;
+  transition: color 150ms ease-in-out;
+  white-space: nowrap;
+
+  &:hover {
+    color: $black !important;
+    opacity: 1;
+    border-bottom-color: $black;
+  }
+}
+
+.red {
+  color: $red;
+
+  &:hover {
+    color: $black !important;
+  }
 }

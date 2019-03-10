@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, THEME } from 'components/Button/Button.jsx';
 import { Icon, ICON } from 'components/Icon/Icon.jsx';
 import Input from 'components/Input/Input.jsx';
@@ -11,6 +12,12 @@ import Footer from 'components/Footer/Footer.jsx';
 import classes from './Components.module.scss';
 
 class Components extends Component {
+
+  static propTypes = {
+    match: PropTypes.object.isRequired,    // from react-router
+    location: PropTypes.object.isRequired, // from react-router
+    history: PropTypes.object.isRequired   // from react-router
+  };
 
   state = {
     email: '',
@@ -56,15 +63,6 @@ class Components extends Component {
       { value: '36', label: '36 FR' },
       { value: '38', label: '38 FR' }
     ];
-
-    const products = {
-      productX: {
-        isNewSeason: true,
-        productDesigner: 'Alessandra Rich',
-        productName: 'crystal embellished swimsuit',
-        productPrice: 831
-      }
-    };
 
     return (
       <div className={classes.root}>

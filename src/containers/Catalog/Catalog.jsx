@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu.jsx';
 import ProductCard from 'components/ProductCard/ProductCard.jsx';
 import Footer from 'components/Footer/Footer.jsx';
 import { getShoppingProducts } from 'services/shopping';
+import { CATEGORIES_BY_ROUTE } from 'constants/categories';
+import { toApiParameter } from 'constants/genders';
+
 import classes from './Catalog.module.scss';
 
+
 class Catalog extends Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired,    // from react-router
+    location: PropTypes.object.isRequired, // from react-router
+    history: PropTypes.object.isRequired   // from react-router
+  };
+
   state = {
     isLoading: false,
     isLoadedSuccess: false,
@@ -18,22 +30,45 @@ class Catalog extends Component {
     this.fetchProducts();
   }
 
-  fetchProducts() {
-    // 0) ainda não começou o pedido -> branco
-    // 1) fetch dos dados -> loading...
-    // 2) se for successo -> renderizar os products
-    // 3) se for erro -> renderiza mensagem de erro
+  componentWillReceiveProps() {
+    // @TODO this method is going to be deprecated...
+    this.fetchProducts();
+  }
 
-    const { category, gender } = this.props.match.params;
-    const search = new URLSearchParams(this.props.location.search);
+  getSearchParamsFromUrl() {
+    const path = window.location.pathname.split('/');
+    const query = new URLSearchParams(window.location.search);
+    
+    return {
+      lang: path[1],
+      gender: path[3],
+      category: path[4],
+      page: query.get('page'),
+      view: query.get('view'),
+      sort: query.get('sort')
+    }
+  }
+
+  fetchProducts() {
+    console.log('* fetch products *');
+
+    const params = this.getSearchParamsFromUrl();
+    const categoryInfo = CATEGORIES_BY_ROUTE[params.category];
+
+    if (!params.gender || !categoryInfo) {
+      console.error('Invalid URL:', params.gender, params.category, categoryInfo);
+      this.setState({ isLoadedFailed: true });
+      return;
+    }
+
     const query = {
-      page: search.get('page') || undefined,
-      view: search.get('view') || '180',
-      sort: search.get('sort') || undefined,
+      page: params.page || undefined,
+      view: params.view || '180',
+      sort: params.sort || undefined,
       pagetype: 'Shopping',
-      gender: gender,         // 'Women',
+      gender: toApiParameter(params.gender),
       pricetype: 'FullPrice',
-      category: category      // '136293'
+      category: categoryInfo.id
     };
 
     this.setState({ isLoading: true });
@@ -105,15 +140,12 @@ class Catalog extends Component {
   }
 
   render() {
-    let {
-      isLoading,
-      isLoadedFailed
-    } = this.state;
+    const { isLoading, isLoadedFailed, isInvalidCategory } = this.state;
     let content;
 
     if (isLoading) {
       content = this.renderLoader();
-    } else if (isLoadedFailed) {
+    } else if (isLoadedFailed || isInvalidCategory) {
       content = this.renderError();
     } else {
       content = this.renderProducts();
