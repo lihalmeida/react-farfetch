@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import Select from 'components/Select/Select.jsx';
 import { Button, THEME } from 'components/Button/Button.jsx';
+import { Icon, ICON } from 'components/Icon/Icon';
 import PropTypes from 'prop-types';
-import Footer from 'components/Footer/Footer.jsx';
+import TheDetails from 'components/TheDetails/TheDetails.jsx';
+import SizeFit from 'components/SizeFit/SizeFit.jsx';
+import ShipingsReturns from 'components/ShipingsReturns/ShipingsReturns.jsx';
 import classes from './Product.module.scss';
 
 class Product extends Component {
   state = {
-    size: '0'
+    size: '0',
+    activeTab: 'details'
   };
+
+  componentDidMount() {
+    const product = window.location.pathname.split('/').pop();
+    const productId = product.split('-').pop().replace('.aspx', '');
+
+    console.log('Product id:', productId);
+  }
 
   handleChoiceSelect = (e) => {
     console.log('* size change *');
@@ -20,6 +31,12 @@ class Product extends Component {
     location: PropTypes.object.isRequired, // from react-router
     history: PropTypes.object.isRequired   // from react-router
   };
+
+  changeActiveTab = (tab) => {
+    return () => {
+      this.setState({ activeTab: tab });
+    };
+  }
 
   render() {
     const sizes = [
@@ -65,16 +82,34 @@ class Product extends Component {
             Home > Women > Clothing > Beachwear
           </div>
           <div className={classes.detailsContent}>
-            Detail
+              <div className={classes.detailsContentMenu}>
+                <div className={classes.menu}>
+                  <button className={classes.h2Title} onClick={this.changeActiveTab('details')}>The Details</button>
+                  <button className={classes.h2Title} onClick={this.changeActiveTab('size')}>Size & Fit</button>
+                  <button className={classes.h2Title} onClick={this.changeActiveTab('shipping')}>Shipping & Returns</button>
+                </div>
+                <div >
+                  Order by phone <a href="/">+44 (0) 20 3962 2362</a>
+                </div>
+              </div>
+
+              <div className={classes.details}>
+                { (this.state.activeTab === 'details') ?  <TheDetails /> : null }
+                { (this.state.activeTab === 'size') && <SizeFit /> }
+                { (this.state.activeTab === 'shipping') && <ShipingsReturns /> }
+              </div>
           </div>
           <div className={classes.contactUs}>
-            <h2>Contact Us</h2>
-            By Email
-            Order By Phone +44 (0) 20 3962 2362
-            Farfetch ID: 13599758
+            <h2 className={classes.h2Title}>Contact Us</h2>
+            <div className={classes.contactUsContainer}>
+              <Icon width={20} height={20} icon={ICON.email} className={classes.icon} />
+              <span>By<a href="/">Email</a></span>
+              <Icon width={17} height={17} icon={ICON.phone} className={classes.icon} />
+              <span>Order By Phone <a href="/">+44 (0) 20 3962 2362</a></span>
+            </div>
+            <p>Farfetch ID: 13599758</p>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }

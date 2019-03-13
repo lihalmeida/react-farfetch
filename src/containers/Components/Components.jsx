@@ -6,7 +6,6 @@ import Input from 'components/Input/Input.jsx';
 import Search from 'components/Search/Search.jsx';
 import Select from 'components/Select/Select.jsx';
 import ProductCard from 'components/ProductCard/ProductCard.jsx';
-import Filter from 'components/Filter/Filter.jsx';
 import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu.jsx';
 import Footer from 'components/Footer/Footer.jsx';
 import classes from './Components.module.scss';
@@ -168,12 +167,8 @@ class Components extends Component {
           />
         </section>
         <section>
-          <Filter />
-        </section>
-        <section>
           <SingleDropDownMenu />
         </section>
-        <Footer />
       </div>
     );
   }

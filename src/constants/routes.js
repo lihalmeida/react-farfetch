@@ -5,7 +5,7 @@ export const ROUTER_PATHS = {
   login: '/:lang/login.aspx',
   shoppingGenderHome: '/:lang/shopping/:gender/items.aspx',
   shopping: '/:lang/shopping/:gender/:category/items.aspx',
-  product: ':lang/shopping/:gender/:productid',
+  product: '/:lang/shopping/:gender/:productid',
   ui: '/ui'
 };
 
@@ -17,7 +17,7 @@ export const linkToLogin = (lang='') => {
   return `${lang}/login`;
 };
 
-export const linkToShopping = (gender, category='', lang='') => {
+export const linkToShopping = (gender, category='', lang='', queryOpts = {}) => {
   lang = lang || getLanguage();
   let url = `/${lang}/shopping/${gender}`;
 
@@ -25,10 +25,30 @@ export const linkToShopping = (gender, category='', lang='') => {
     url += `/${category}`;
   }
 
-  return `${url}/items.aspx`;
+  url = `${url}/items.aspx`;
+
+  const queryParams = [];
+
+  if (queryOpts.page) {
+    queryParams.push(`page=${encodeURIComponent(queryOpts.page)}`);
+  }
+
+  if (queryOpts.view) {
+    queryParams.push(`view=${encodeURIComponent(queryOpts.view)}`);
+  }
+
+  if (queryOpts.sort) {
+    queryParams.push(`sort=${encodeURIComponent(queryOpts.sort)}`);
+  }
+
+  if (queryParams.length) {
+    url += `?${queryParams.join('&')}`;
+  }
+
+  return url;
 };
 
 export const linkToProduct = (gender, productId, lang='') => {
   lang = lang || getLanguage();
-  return `/${lang}/shopping/${gender}/${productId}`;
+  return `/${lang}/shopping/${gender}/${productId}.aspx`;
 };

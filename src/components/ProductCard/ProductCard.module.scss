@@ -4,7 +4,7 @@ $card-image-fade: opacity 300ms ease-in-out;
 
 .root {
   display: inline-block;
-  position: relative;
+  //position: relative;
   width: 220px;
   background: $white;
   text-align: center;
@@ -16,6 +16,10 @@ $card-image-fade: opacity 300ms ease-in-out;
   width: 100%;
   color: $black;
   text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .cardImg {
@@ -26,7 +30,6 @@ $card-image-fade: opacity 300ms ease-in-out;
 
   & img {
     width: 100%;
-    // pointer-events: none;
   }
 
   &:hover {

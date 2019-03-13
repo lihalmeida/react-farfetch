@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+
+.root {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  letter-spacing: normal;
+  line-height: 21.9px;
+  padding-top: 40px;
+}
+
+.h1Title {
+  font-family: $font-condensed;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1.9px;
+}
+
+.h5Title {
+  font-family: $font-bold;
+  font-size: 15px;
+}
+
+.detailContainer {
+  flex-grow: 1;
+}
+
+.imgContainer {
+  max-width: 30%;
+  padding: 0;
+  margin: 0;
+
+  & img {
+    width: 370px;
+    height: 530px;
+  }
+}

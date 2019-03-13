@@ -8,6 +8,7 @@ import Product from 'containers/Product/Product';
 import NotFound from 'containers/NotFound/NotFound';
 import Components from 'containers/Components/Components';
 import Header from 'components/Header/Header';
+import Footer from 'components/Footer/Footer.jsx';
 import { ROUTER_PATHS } from 'constants/routes';
 
 import classes from './App.module.scss';
@@ -28,11 +29,13 @@ class App extends Component {
                 <Route exact path={ROUTER_PATHS.home} component={Home} />
                 <Route path={ROUTER_PATHS.shoppingGenderHome} component={Catalog} />
                 <Route path={ROUTER_PATHS.shopping} component={Catalog} />
+                <Route path="/product" component={Product} />
                 <Route path={ROUTER_PATHS.product} component={Product} />
                 <Route exact path={ROUTER_PATHS.ui} component={Components} />
                 <Route component={NotFound} />
               </Switch>
             </main>
+            <Footer />
           </React.Fragment>
         </BrowserRouter>
       </div>

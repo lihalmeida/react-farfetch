@@ -6,21 +6,8 @@ export class Footer extends React.Component {
   render() {
     return (
       <footer className={classes.root}>
-        <div className={classes.section1}>
-          <div className={classes.globalContainer}>
-            <div className={`${classes.baseline} ${classes.containerSection1}`}>
-              <a href="/" className={classes.linkSection1}>How to Shop</a>
-            </div>
-            <div className={`${classes.baseline} ${classes.containerSection1}`}>
-              <a href="/" className={classes.linkSection1}>FAQ's</a>
-            </div>
-            <div className={`${classes.baseline} ${classes.containerSection1}`}>
-              <a href="/" className={classes.linkSection1}>Need Help?</a>
-            </div>
-          </div>
-        </div>
-        <div className={classes.section2}>
-          <div className={classes.globalContainer}>
+        <div className={classes.globalContainer}>
+          <div className={classes.section1}>
             <div className={`${classes.baseline} ${classes.container1}`}>
               <div>
                 <h5 className={classes.footerTitle}>CONNECT</h5>
@@ -79,9 +66,7 @@ export class Footer extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-        <div className={classes.section3}>
-          <div className={classes.globalContainer}>
+          <div className={classes.section2}>
             <span>
               'farfetch' and the 'farfetch' logo are trade marks of Farfetch UK Limited and
               are registered in numerous jurisdictions around the world.

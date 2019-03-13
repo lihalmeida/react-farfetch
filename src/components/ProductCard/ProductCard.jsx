@@ -16,7 +16,8 @@ class ProductCard extends React.Component {
     productName: PropTypes.string.isRequired,
     productPrice: PropTypes.string.isRequired,
     onClick: PropTypes.func,
-    isAWishItem: PropTypes.bool
+    isAWishItem: PropTypes.bool,
+    url: PropTypes.string.isRequired
   };
 
   static defaultProps = {
@@ -28,7 +29,7 @@ class ProductCard extends React.Component {
   render() {
     return (
       <div className={classes.root}>
-        <div className={classes.card} key={this.props.key}>
+        <Link to={this.props.url} className={classes.card}>
           <div
             role="button"
             className={classes.wishlistBtn}
@@ -53,7 +54,7 @@ class ProductCard extends React.Component {
             <p className={classes.productName}>{this.props.productName}</p>
             <div className={classes.productPrice}>{this.props.productPrice}</div>
           </div>
-        </div>
+        </Link>
       </div>
     );
   }

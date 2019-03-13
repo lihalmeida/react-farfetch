@@ -1,54 +1,30 @@
 @import '../../styles/variables.scss';
 
 .root {
+  width: 100%;
   background: $black;
   color: $white;
   text-align: left;
-
-  & section {
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.section1 {
-  background: $light-gray-2;
-}
-
-.section2 {
-  padding-bottom: 40px;
+  margin: 0;
+  padding: 0;
 }
 
 .globalContainer {
-  display: flex;
   max-width: $page-max-width;
   width: 100%;
   height: 100%;
   margin: 0 auto;
 }
 
+.section1 {
+  display: flex;
+  padding-bottom: 40px;
+}
+
 .baseline {
   flex-grow: 1;
   width: 100%;
   height: 100%;
-}
-
-.containerSection1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.linkSection1 {
-  color: $white;
-  font-family: $font-bold;
-  font-size: 16px;
-  text-decoration: none;
-  padding: 10px 0;
-
-  &:hover {
-    opacity: 1;
-  }
 }
 
 .container1 {
@@ -143,8 +119,8 @@
 }
 
 
-.section3 {
+.section2 {
   color: $light-gray-2;
   font-size: 11px;
-  padding: 0 0 20px 10px;
+  padding: 0 10px 20px 10px;
 }

@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu.jsx';
 import ProductCard from 'components/ProductCard/ProductCard.jsx';
-import Footer from 'components/Footer/Footer.jsx';
 import { getShoppingProducts } from 'services/shopping';
 import { CATEGORIES_BY_ROUTE } from 'constants/categories';
-import { toApiParameter } from 'constants/genders';
+import { GENDER, toApiParameter } from 'constants/genders';
+import { linkToShopping, linkToProduct } from 'constants/routes';
+import { translate as t } from 'i18n/translate';
 
 import classes from './Catalog.module.scss';
 
@@ -23,7 +24,8 @@ class Catalog extends Component {
     isLoadedSuccess: false,
     isLoadedFailed: false,
     products: [],
-    wishItem: false
+    wishItem: false,
+    sortKey: 'picks'
   };
 
   componentDidMount() {
@@ -38,7 +40,7 @@ class Catalog extends Component {
   getSearchParamsFromUrl() {
     const path = window.location.pathname.split('/');
     const query = new URLSearchParams(window.location.search);
-    
+
     return {
       lang: path[1],
       gender: path[3],
@@ -95,7 +97,13 @@ class Catalog extends Component {
     this.setState({ wishItem: !(this.state.wishItem) });
   }
 
-  renderProductCard = (product) => {
+  renderProductCard = (product, gender) => {
+    gender = gender || GENDER.women;
+
+    const productName = `${product.brand.name}-${product.shortDescription}`;
+    const productId = `${productName}-${product.id}`.toLowerCase().replace(/\s/g, '-');
+    const url = linkToProduct(gender, productId);
+
     return (
        <div className={classes.card} key={product.id}>
         <ProductCard
@@ -107,6 +115,7 @@ class Catalog extends Component {
           productPrice={product.priceInfo.formattedFinalPrice}
           onClick={this.handleProductWish}
           isAWishItem={this.state.wishItem}
+          url={url}
         />
       </div>
     );
@@ -129,13 +138,55 @@ class Catalog extends Component {
   }
 
   renderProducts() {
+    const params = this.getSearchParamsFromUrl();
+
     return (
       <div className={classes.catalog}>
-        <div className={classes.filter}>Filter</div>
         <div className={classes.cardsContainer}>
-          { this.state.products.map(this.renderProductCard) }
+          { this.state.products.map(
+            (product) => this.renderProductCard(product, params.gender)
+          ) }
         </div>
       </div>
+    );
+  }
+
+  renderSort() {
+    // value: PropTypes.string.isRequired,
+    // label: PropTypes.string.isRequired,
+    // url: P
+    const params = this.getSearchParamsFromUrl();
+    const value = this.state.sortKey;
+    const query = {
+      view: params.view,
+      sort: params.sort,
+    };
+
+    const options = [
+      {
+        value: 'picks',
+        label: t('CatalogSortOptionPicks'),
+        url: linkToShopping(params.gender, params.category, null, { ...query, sort: '3' })
+      }, {
+        value: 'newest',
+        label: t('CatalogSortOptionNewest'),
+        url: linkToShopping(params.gender, params.category, null, { ...query, sort: '2' })
+      }, {
+        value: 'price-desc',
+        label: t('CatalogSortOptionPriceDesc'),
+        url: linkToShopping(params.gender, params.category, null, { ...query, sort: '1' })
+      }, {
+        value: 'price-asc',
+        label: t('CatalogSortOptionPriceAsc'),
+        url: linkToShopping(params.gender, params.category, null, { ...query, sort: '4' })
+      }
+    ];
+
+    return (
+      <SingleDropDownMenu
+        value={value}
+        options={options}
+      />
     );
   }
 
@@ -165,12 +216,11 @@ class Catalog extends Component {
               2,900+ pieces
             </div>
             <div className={classes.sort}>
-              <SingleDropDownMenu />
+              { this.renderSort() }
             </div>
           </div>
           { content }
         </div>
-        <Footer />
       </div>
     );
   }

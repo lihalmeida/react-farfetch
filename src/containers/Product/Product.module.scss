@@ -1,16 +1,27 @@
 @import '../../styles/variables.scss';
 
 .root {
+  width: 100%;
   line-height: 1.5;
-  margin-top: 125px;
+
+  & button {
+    border: none;
+    background: none;
+  }
 }
 
 .globalContainer {
-  background-color: lightcoral;
   max-width: $page-max-width;
   width: 100%;
   height: 100%;
+  padding: 10px;
   margin: 0 auto;
+}
+
+.h2Title {
+  font-family: $font-bold;
+  font-size: 18px;
+  line-height: 27.9px;
 }
 
 .product {
@@ -22,12 +33,11 @@
 
 .galery {
   display: flex;
-  background: lightyellow;
 
   & img {
-    max-width: 360px;
+    //max-width: 360px;
     width: 50%;
-    max-height: 480px;
+    //max-height: 480px;
     height: 100%;
     padding: 30px 40px;
     margin: 0;
@@ -38,7 +48,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: lightgreen;
   width: 40%;
   height: 100%;
 }
@@ -74,6 +83,10 @@ line-height: 26.3px;
   display: flex;
   justify-content: center;
   width: 100%;
+
+  & Button {
+    margin: 10px;
+  }
 }
 
 .history {
@@ -87,7 +100,56 @@ line-height: 26.3px;
 }
 
 .detailsContent {
-  background: lightseagreen;
   width: 100%;
-  height: 200px;
+  font-size: 12px;
 }
+
+.detailsContentMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid $light-gray-1;
+
+  & .menu {
+    display: flex;
+
+    & .h2Title {
+      padding-bottom: 0;
+      margin-right: 48px;
+      margin-bottom: 0;
+      border-bottom: 3px solid transparent;
+      will-change: border;
+      transform: translateY(.1rem);
+      transition: color 125ms,border .25s linear;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      &:active {
+        border-bottom: 3px solid $brown;
+      }
+    }
+  }
+}
+
+.contactUs {
+  font-size: 12px;
+  text-align: center;
+
+  & p {
+    padding: 20px 0;
+  }
+}
+
+.contactUsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & span {
+    padding: 0 30px 0 15px;;
+  }
+}
+

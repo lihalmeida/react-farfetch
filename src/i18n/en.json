@@ -31,5 +31,10 @@
   "NavigationKidsGirls": "Girls",
   "NavigationKidsBoys": "Boys",
   "NavigationKidsShoes": "Shoes",
-  "NavigationKidsSale": "Sale"
+  "NavigationKidsSale": "Sale",
+  "SingleDropdownMenuTitle": "Sort By",
+  "CatalogSortOptionPicks": "Our Picks",
+  "CatalogSortOptionNewest": "Newest first",
+  "CatalogSortOptionPriceDesc": "Price: high to low",
+  "CatalogSortOptionPriceAsc": "Price: low to high"
 }
