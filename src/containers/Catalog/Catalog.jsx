@@ -5,7 +5,7 @@ import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu
 import ProductCard from 'components/ProductCard/ProductCard.jsx';
 import { getShoppingProducts } from 'services/shopping';
 import { CATEGORIES_BY_ROUTE } from 'constants/categories';
-import { GENDER, toApiParameter } from 'constants/genders';
+import { GENDER } from 'constants/genders';
 import { linkToShopping, linkToProduct } from 'constants/routes';
 import { translate as t } from 'i18n/translate';
 
@@ -67,9 +67,7 @@ class Catalog extends Component {
       page: params.page || undefined,
       view: params.view || '180',
       sort: params.sort || undefined,
-      pagetype: 'Shopping',
-      gender: toApiParameter(params.gender),
-      pricetype: 'FullPrice',
+      gender: params.gender,
       category: categoryInfo.id
     };
 
@@ -101,8 +99,7 @@ class Catalog extends Component {
     gender = gender || GENDER.women;
 
     const productName = `${product.brand.name}-${product.shortDescription}`;
-    const productId = `${productName}-${product.id}`.toLowerCase().replace(/\s/g, '-');
-    const url = linkToProduct(gender, productId);
+    const url = linkToProduct(gender, productName, product.id);
 
     return (
        <div className={classes.card} key={product.id}>

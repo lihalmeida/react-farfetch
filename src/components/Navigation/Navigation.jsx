@@ -155,9 +155,9 @@ class Navigation extends Component {
     return (
       <nav className={classes.root}>
         <div className={womenClassNames}>
-          <Link className={classes.genderRoot} to={ linkToShopping(GENDER.women) }>
+          <div className={classes.genderRoot}>
             {t('NavigationWomen')}
-          </Link>
+          </div>
           <div className={classes.genderMenu}>
             <div className={classes.linksMain}>
               { LINKS_WOMEN.map(this.renderLink) }
@@ -165,9 +165,9 @@ class Navigation extends Component {
           </div>
         </div>
         <div className={menClassNames}>
-          <Link className={classes.genderRoot} to={ linkToShopping(GENDER.men) } >
+          <div className={classes.genderRoot}>
             {t('NavigationMen')}
-          </Link>
+          </div>
           <div className={classes.genderMenu}>
             <div className={classes.linksMain}>
               { LINKS_MEN.map(this.renderLink) }
@@ -175,9 +175,9 @@ class Navigation extends Component {
           </div>
         </div>
         <div className={kidsClassNames}>
-          <Link className={classes.genderRoot} to={ linkToShopping(GENDER.kids) } >
+          <div className={classes.genderRoot}>
             {t('NavigationKids')}
-          </Link>
+          </div>
           <div className={classes.genderMenu}>
             <div className={classes.linksMain}>
               { LINKS_KIDS.map(this.renderLink) }

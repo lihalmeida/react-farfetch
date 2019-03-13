@@ -24,7 +24,6 @@ export class SingleDropDownMenu extends React.Component {
   };
 
   handleOptionClick = (option) => {
-    console.log('click!!!');
     this.props.onChange(option.value);
   }
 
@@ -35,7 +34,11 @@ export class SingleDropDownMenu extends React.Component {
     });
 
     return (
-      <li className={ optionClassNames } onClick={() => this.handleOptionClick(option)}>
+      <li
+        className={ optionClassNames }
+        onClick={() => this.handleOptionClick(option)}
+        key={ option.value }
+      >
         <Link to={option.url}>{option.label}</Link>
       </li>
     );

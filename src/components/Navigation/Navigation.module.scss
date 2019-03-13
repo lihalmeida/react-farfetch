@@ -17,9 +17,11 @@ $genderLinkFontActive: $font-bold;
 }
 
 .genderRoot {
+  min-height: 24px;
   font-size: 15px;
   font-family: $font-text;
   text-decoration: none;
+  cursor: default;
 
   &:hover {
     opacity: 1;
