@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { getProductDetails } from 'services/shopping';
 import Select from 'components/Select/Select.jsx';
 import { Button, THEME } from 'components/Button/Button.jsx';
 import { Icon, ICON } from 'components/Icon/Icon';
-import PropTypes from 'prop-types';
+import Loader from 'components/Loader/Loader';
 import TheDetails from 'components/TheDetails/TheDetails.jsx';
 import SizeFit from 'components/SizeFit/SizeFit.jsx';
 import ShipingsReturns from 'components/ShipingsReturns/ShipingsReturns.jsx';
@@ -18,6 +19,7 @@ class Product extends Component {
     history: PropTypes.object.isRequired   // from react-router
   };
 
+  lastRouteParams = null;
   state = {
     size: '0',
     isLoading: false,
@@ -28,35 +30,67 @@ class Product extends Component {
   };
 
   componentDidMount() {
-    this.fetchProduct();
+    this.fetchData();
   }
 
-  componentWillReceiveProps() {
-    // @TODO this method is going to be deprecated...
-    this.fetchProduct();
+  componentDidUpdate() {
+    this.fetchData();
   }
 
-  getSearchParamsFromUrl() {
-    const path = window.location.pathname.split('/');
-    const query = new URLSearchParams(window.location.search);
+  getSearchParamsFromRoute() {
+    const pathParams = this.props.match.params || {};
+    const query = new URLSearchParams(this.props.location.search || '');
 
     return {
-      productFullId: path[4].replace('.aspx', ''),
-      gender: path[3],
+      productFullId: pathParams.productid.replace('.aspx', ''),
+      gender: pathParams.gender,
       storeid: query.get('storeid')
-    }
+    };
   }
 
-  fetchProduct() {
+  saveLastRouteParams(query) {
+    this.lastRouteParams = query;
+  }
+
+  shouldFetchData(routeParams) {
+    // there's no query to execute
+    if (!routeParams) {
+      return false;
+    }
+
+    // no object to compare, so it should be the first request
+    if (!this.lastRouteParams) {
+      return true;
+    }
+
+    // compare with saved object
+    return (
+      this.lastRouteParams.productFullId !== routeParams.productFullId
+      || this.lastRouteParams.gender !== routeParams.gender
+      || this.lastRouteParams.storeid !== routeParams.storeid
+    );
+  }
+
+  fetchData() {
     console.log('* fetch product *');
 
-    const params = this.getSearchParamsFromUrl();
+    const routeParams = this.getSearchParamsFromRoute();
+
+    // no useful parameter was changed since last request?
+    if (!this.shouldFetchData(routeParams)) {
+      return Promise.resolve(null);
+    }
+
+    // if any parameter was changed, then save and updated copy of the query params (so we can
+    // compare later) and execute new request
+    this.saveLastRouteParams(routeParams);
 
     this.setState({ isLoading: true });
 
+    // execute request
     return getProductDetails({
-        productFullId: params.productFullId,
-        gender: params.gender
+        productFullId: routeParams.productFullId,
+        gender: routeParams.gender
       })
       .then(response => {
         console.log('SUCCESS!!!!', response);
@@ -91,8 +125,10 @@ class Product extends Component {
   }
 
   renderLoading() {
-    return (
-      <div>Loading...</div>
+    return(
+      <div className={classes.loading}>
+        <Loader />
+      </div>
     );
   }
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu.jsx';
-import ProductCard from 'components/ProductCard/ProductCard.jsx';
+import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu';
+import ProductCard from 'components/ProductCard/ProductCard';
+import Loader from 'components/Loader/Loader';
 import { getShoppingProducts } from 'services/shopping';
 import { CATEGORIES_BY_ROUTE } from 'constants/categories';
 import { GENDER } from 'constants/genders';
@@ -13,12 +14,14 @@ import classes from './Catalog.module.scss';
 
 
 class Catalog extends Component {
+
   static propTypes = {
     match: PropTypes.object.isRequired,    // from react-router
     location: PropTypes.object.isRequired, // from react-router
     history: PropTypes.object.isRequired   // from react-router
   };
 
+  lastRouteParams = null;
   state = {
     isLoading: false,
     isLoadedSuccess: false,
@@ -29,51 +32,86 @@ class Catalog extends Component {
   };
 
   componentDidMount() {
-    this.fetchProducts();
+    this.fetchData();
   }
 
-  componentWillReceiveProps() {
-    // @TODO this method is going to be deprecated...
-    this.fetchProducts();
+  componentDidUpdate() {
+    this.fetchData();
   }
 
-  getSearchParamsFromUrl() {
-    const path = window.location.pathname.split('/');
-    const query = new URLSearchParams(window.location.search);
+  getSearchParamsFromRoute() {
+    const pathParams = this.props.match.params || {};
+    const query = new URLSearchParams(this.props.location.search || '');
 
     return {
-      lang: path[1],
-      gender: path[3],
-      category: path[4],
+      lang: pathParams.lang,
+      gender: pathParams.gender,
+      category: pathParams.category,
       page: query.get('page'),
       view: query.get('view'),
       sort: query.get('sort')
-    }
+    };
   }
 
-  fetchProducts() {
-    console.log('* fetch products *');
+  saveLastRouteParams(query) {
+    this.lastRouteParams = query;
+  }
 
-    const params = this.getSearchParamsFromUrl();
-    const categoryInfo = CATEGORIES_BY_ROUTE[params.category];
-
-    if (!params.gender || !categoryInfo) {
-      console.error('Invalid URL:', params.gender, params.category, categoryInfo);
-      this.setState({ isLoadedFailed: true });
-      return;
+  shouldFetchData(queryParams) {
+    // there's no query to execute
+    if (!queryParams) {
+      return false;
     }
 
-    const query = {
-      page: params.page || undefined,
-      view: params.view || '180',
-      sort: params.sort || undefined,
-      gender: params.gender,
+    // no object to compare, so it should be the first request
+    if (!this.lastRouteParams) {
+      return true;
+    }
+
+    // compare with saved object
+    return (
+      this.lastRouteParams.lang !== queryParams.lang
+      || this.lastRouteParams.gender !== queryParams.gender
+      || this.lastRouteParams.category !== queryParams.category
+      || this.lastRouteParams.page !== queryParams.page
+      || this.lastRouteParams.view !== queryParams.view
+      || this.lastRouteParams.sort !== queryParams.sort
+    );
+  }
+
+  fetchData() {
+    const routeParams = this.getSearchParamsFromRoute();
+
+    // no useful parameter was changed since last request?
+    if (!this.shouldFetchData(routeParams)) {
+      return Promise.resolve(null);
+    }
+
+    // if any parameter was changed, then save and updated copy of the query params (so we can
+    // compare later) and execute new request
+    this.saveLastRouteParams(routeParams);
+
+    const categoryInfo = CATEGORIES_BY_ROUTE[routeParams.category];
+
+    // validation errors
+    if (!routeParams.gender || !categoryInfo) {
+      this.setState({ isLoadedFailed: true });
+      return Promise.error('Missing valid gender or category.');
+    }
+
+
+    const data = {
+      page: routeParams.page || undefined,
+      view: routeParams.view || '180',
+      sort: routeParams.sort || undefined,
+      gender: routeParams.gender,
       category: categoryInfo.id
     };
 
     this.setState({ isLoading: true });
 
-    return getShoppingProducts(query)
+    // execute request
+    return getShoppingProducts(data)
       .then(response => {
         this.setState({
           isLoading: false,
@@ -118,10 +156,10 @@ class Catalog extends Component {
     );
   }
 
-  renderLoader() {
+  renderLoading() {
     return(
       <div className={classes.loading}>
-        LOADING...
+        <Loader />
       </div>
     );
   }
@@ -135,7 +173,7 @@ class Catalog extends Component {
   }
 
   renderProducts() {
-    const params = this.getSearchParamsFromUrl();
+    const params = this.getSearchParamsFromRoute();
 
     return (
       <div className={classes.catalog}>
@@ -149,10 +187,7 @@ class Catalog extends Component {
   }
 
   renderSort() {
-    // value: PropTypes.string.isRequired,
-    // label: PropTypes.string.isRequired,
-    // url: P
-    const params = this.getSearchParamsFromUrl();
+    const params = this.getSearchParamsFromRoute();
     const value = this.state.sortKey;
     const query = {
       view: params.view,
@@ -192,7 +227,7 @@ class Catalog extends Component {
     let content;
 
     if (isLoading) {
-      content = this.renderLoader();
+      content = this.renderLoading();
     } else if (isLoadedFailed || isInvalidCategory) {
       content = this.renderError();
     } else {
