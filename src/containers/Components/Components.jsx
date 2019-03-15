@@ -7,7 +7,6 @@ import Search from 'components/Search/Search.jsx';
 import Select from 'components/Select/Select.jsx';
 import ProductCard from 'components/ProductCard/ProductCard.jsx';
 import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu.jsx';
-import Footer from 'components/Footer/Footer.jsx';
 import classes from './Components.module.scss';
 
 class Components extends Component {

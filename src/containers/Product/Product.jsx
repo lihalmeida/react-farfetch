@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { getProductDetails } from 'services/shopping';
-import Select from 'components/Select/Select.jsx';
-import { Button, THEME } from 'components/Button/Button.jsx';
+import Select from 'components/Select/Select';
+import { Button, THEME } from 'components/Button/Button';
 import { Icon, ICON } from 'components/Icon/Icon';
 import Loader from 'components/Loader/Loader';
-import TheDetails from 'components/TheDetails/TheDetails.jsx';
-import SizeFit from 'components/SizeFit/SizeFit.jsx';
-import ShipingsReturns from 'components/ShipingsReturns/ShipingsReturns.jsx';
+import ProductTabDetails from 'components/ProductTabDetails/ProductTabDetails';
+import ProductTabSizes from 'components/ProductTabSizes/ProductTabSizes';
+import ProductTabShipings from 'components/ProductTabShipings/ProductTabShipings';
 import classes from './Product.module.scss';
 
 class Product extends Component {
@@ -192,9 +192,9 @@ class Product extends Component {
             </div>
 
             <div className={classes.details}>
-              { (this.state.activeTab === 'details') ?  <TheDetails /> : null }
-              { (this.state.activeTab === 'size') && <SizeFit /> }
-              { (this.state.activeTab === 'shipping') && <ShipingsReturns /> }
+              { (this.state.activeTab === 'details') ?  <ProductTabDetails /> : null }
+              { (this.state.activeTab === 'size') && <ProductTabSizes /> }
+              { (this.state.activeTab === 'shipping') && <ProductTabShipings /> }
             </div>
         </div>
         <div className={classes.contactUs}>

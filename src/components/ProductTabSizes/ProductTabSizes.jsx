@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './SizeFit.module.scss';
+import classes from './ProductTabSizes.module.scss';
 
-export class SizeFit extends React.Component {
+export class ProductSizeFit extends React.Component {
   render() {
     return (
       <div className={classes.root}>
@@ -14,7 +14,7 @@ export class SizeFit extends React.Component {
               Waist: 61 cm - 24 in<br/>
               Model is 1.78 m wearing size 42 - Model is 5 ft 10 in wearing size 42</p>
           <p>All measurements are made by the Farfetch team</p>
-          <p>Still need help? Try our <a>Size Guide</a></p>
+          <p>Still need help? Try our <a href="/about/size-guide">Size Guide</a></p>
         </div>
         <div className={classes.imgContainer}>
           <img
@@ -27,4 +27,4 @@ export class SizeFit extends React.Component {
   }
 }
 
-export default SizeFit;
+export default ProductSizeFit;

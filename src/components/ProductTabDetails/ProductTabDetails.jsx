@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './TheDetails.module.scss';
+import classes from './ProductTabDetails.module.scss';
 
-export class TheDetails extends React.Component {
+export class ProductDetails extends React.Component {
   render() {
     return (
       <div className={classes.root}>
@@ -46,4 +46,4 @@ export class TheDetails extends React.Component {
   }
 }
 
-export default TheDetails;
+export default ProductDetails;

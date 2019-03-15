@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './ShipingsReturns.module.scss';
+import classes from './ProductTabShipings.module.scss';
 
-export class ShipingsReturns extends React.Component {
+export class ProductTabShipings extends React.Component {
   render() {
     return (
       <div className={classes.root}>
@@ -34,9 +34,9 @@ export class ShipingsReturns extends React.Component {
         <div className={classes.column3}>
           <h5 className={classes.h5Title}>Need more information</h5>
           <ul>
-            <li><a>Orders & Shipping</a></li>
-            <li><a>Returns & Refunds</a></li>
-            <li><a>Duties & Taxes</a></li>
+            <li><a href="/about/orders">Orders & Shipping</a></li>
+            <li><a href="/about/returns">Returns & Refunds</a></li>
+            <li><a href="/about/duties">Duties & Taxes</a></li>
           </ul>
         </div>
       </div>
@@ -44,4 +44,4 @@ export class ShipingsReturns extends React.Component {
   }
 }
 
-export default ShipingsReturns;
+export default ProductTabShipings;

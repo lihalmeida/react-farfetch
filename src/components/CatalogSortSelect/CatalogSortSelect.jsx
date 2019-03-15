@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Icon, ICON } from 'components/Icon/Icon.jsx';
 import { translate as t } from 'i18n/translate'
-import classes from './SingleDropDownMenu.module.scss';
+import classes from './CatalogSortSelect.module.scss';
 
-export class SingleDropDownMenu extends React.Component {
+export class CatalogSortSelect extends React.Component {
   static propTypes = {
     options: PropTypes.arrayOf(PropTypes.shape({
       value: PropTypes.string.isRequired,
@@ -50,7 +50,7 @@ export class SingleDropDownMenu extends React.Component {
         <ul className={classes.sortContent}>
           <li className={classes.sort}>
             <div className={classes.align}>
-              <span>{ t('SingleDropdownMenuTitle') }</span>
+              <span>{ t('CatalogSortSelectTitle') }</span>
               <span className={classes.icon}><Icon icon={ICON.caretDownSmall} /></span>
             </div>
             <ul>
@@ -63,4 +63,4 @@ export class SingleDropDownMenu extends React.Component {
   }
 }
 
-export default SingleDropDownMenu;
+export default CatalogSortSelect;

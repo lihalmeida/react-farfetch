@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Icon, ICON } from 'components/Icon/Icon.jsx';
-import { translate as t } from 'i18n/translate';
 import classes from './ProductCard.module.scss';
 
 // --> ALTERAR O <a> PARA <link>
