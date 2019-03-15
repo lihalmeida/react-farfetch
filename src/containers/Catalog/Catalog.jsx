@@ -27,8 +27,7 @@ class Catalog extends Component {
     isLoadedSuccess: false,
     isLoadedFailed: false,
     products: [],
-    wishItem: false,
-    sortKey: 'picks'
+    wishItem: false
   };
 
   componentDidMount() {
@@ -188,27 +187,27 @@ class Catalog extends Component {
 
   renderSort() {
     const params = this.getSearchParamsFromRoute();
-    const value = this.state.sortKey;
+    const value = params.sort || '3'; // default sort is picks (id=3)
     const query = {
       view: params.view,
-      sort: params.sort,
+      sort: ''
     };
 
     const options = [
       {
-        value: 'picks',
+        value: '3',
         label: t('CatalogSortOptionPicks'),
         url: linkToShopping(params.gender, params.category, null, { ...query, sort: '3' })
       }, {
-        value: 'newest',
+        value: '2',
         label: t('CatalogSortOptionNewest'),
         url: linkToShopping(params.gender, params.category, null, { ...query, sort: '2' })
       }, {
-        value: 'price-desc',
+        value: '1',
         label: t('CatalogSortOptionPriceDesc'),
         url: linkToShopping(params.gender, params.category, null, { ...query, sort: '1' })
       }, {
-        value: 'price-asc',
+        value: '4',
         label: t('CatalogSortOptionPriceAsc'),
         url: linkToShopping(params.gender, params.category, null, { ...query, sort: '4' })
       }

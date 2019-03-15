@@ -23,8 +23,21 @@ export class CatalogSortSelect extends React.Component {
     onChange: () => {},
   };
 
+  state = {
+    isOpen: false
+  };
+
+  handleToggleClick = () => {
+    this.setState((prevState) => {
+      return {
+        isOpen: !prevState.isOpen
+      }
+    });
+  }
+
   handleOptionClick = (option) => {
     this.props.onChange(option.value);
+    this.setState({ isOpen: false });
   }
 
   renderOption = (option) => {
@@ -45,15 +58,22 @@ export class CatalogSortSelect extends React.Component {
   }
 
   render() {
+    const rootClasseNames = classNames({
+      [classes.root]: true,
+      [classes.rootOpen]: this.state.isOpen
+    });
+
     return (
-      <div className={classes.root}>
+      <div className={rootClasseNames}>
         <ul className={classes.sortContent}>
           <li className={classes.sort}>
-            <div className={classes.align}>
+            <div className={classes.button} onClick={this.handleToggleClick} role="button">
               <span>{ t('CatalogSortSelectTitle') }</span>
-              <span className={classes.icon}><Icon icon={ICON.caretDownSmall} /></span>
+              <span className={classes.icon}>
+                <Icon icon={ICON.caretDownSmall} />
+              </span>
             </div>
-            <ul>
+            <ul className={classes.options}>
               { this.props.options.map(this.renderOption) }
             </ul>
           </li>
