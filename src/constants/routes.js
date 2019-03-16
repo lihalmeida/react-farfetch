@@ -5,7 +5,7 @@ export const ROUTER_PATHS = {
   login: '/:lang/login.aspx',
   shopping: '/:lang/shopping/:gender/:category/items.aspx',
   search: '/:lang/shopping/:gender/:category/items.aspx?q=:q',
-  product: '/:lang/shopping/:gender/:productid',
+  product: '/:lang/shopping/:gender/:productid.aspx',
   ui: '/ui'
 };
 
@@ -14,7 +14,7 @@ export const linkToUi = () => ROUTER_PATHS.ui;
 
 export const linkToLogin = (lang='') => {
   lang = lang || getLanguage();
-  return `${lang}/login`;
+  return `/${lang}/login`;
 };
 
 export const linkToShopping = (gender, category='', lang='', queryOpts = {}) => {
@@ -88,7 +88,14 @@ export const linkToSearch = (querySearch, gender, category='', lang='', queryOpt
 export const linkToProduct = (gender, productName, productId, lang='') => {
   lang = lang || getLanguage();
 
-  const productPath = `${productName}-item-${productId}`.toLowerCase().replace(/\s/g, '-');
+  let productPath = `${productName}-item-${productId}`;
+
+  // lower case all path and replace all white spaces by "-"
+  productPath = productPath.toLowerCase().replace(/\s/g, '-');
+
+  // remove all characters except numbers (0-9), letters (a-z or A-Z) and "-"
+  // https://stackoverflow.com/questions/9364400/remove-not-alphanumeric-characters-from-string-having-trouble-with-the-char
+  productPath = productPath.replace(/[^0-9a-z-]/gi, '')
 
   return `/${lang}/shopping/${gender}/${productPath}.aspx`;
 };

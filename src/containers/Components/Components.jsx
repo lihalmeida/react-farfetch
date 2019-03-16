@@ -6,7 +6,7 @@ import Input from 'components/Input/Input.jsx';
 import Search from 'components/Search/Search.jsx';
 import Select from 'components/Select/Select.jsx';
 import ProductCard from 'components/ProductCard/ProductCard.jsx';
-import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu.jsx';
+import CatalogSortSelect from 'components/CatalogSortSelect/CatalogSortSelect.jsx';
 import classes from './Components.module.scss';
 
 class Components extends Component {
@@ -166,7 +166,7 @@ class Components extends Component {
           />
         </section>
         <section>
-          <SingleDropDownMenu />
+          <CatalogSortSelect />
         </section>
       </div>
     );

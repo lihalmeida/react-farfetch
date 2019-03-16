@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu.jsx';
+import CatalogSortSelect from 'components/CatalogSortSelect/CatalogSortSelect.jsx';
 import ProductCard from 'components/ProductCard/ProductCard.jsx';
 import { getSearchResults } from 'services/shopping';
 import { CATEGORIES_BY_ROUTE } from 'constants/categories';
@@ -187,7 +187,7 @@ class SearchResults extends Component {
     ];
 
     return (
-      <SingleDropDownMenu
+      <CatalogSortSelect
         value={value}
         options={options}
       />
