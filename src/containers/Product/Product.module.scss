@@ -3,11 +3,6 @@
 .root {
   width: 100%;
   line-height: 1.5;
-
-  & button {
-    border: none;
-    background: none;
-  }
 }
 
 .globalContainer {
@@ -113,7 +108,9 @@ line-height: 26.3px;
   & .menu {
     display: flex;
 
-    & .h2Title {
+    & button.h2Title {
+      border: none;
+      background: none;
       padding-bottom: 0;
       margin-right: 48px;
       margin-bottom: 0;

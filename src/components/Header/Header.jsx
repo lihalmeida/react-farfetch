@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Navigation from 'components/Navigation/Navigation';
 import Search from 'components/Search/Search';
-import { linkToHome } from 'constants/routes';
+import { linkToHome, linkToSearch } from 'constants/routes';
 import { translate as t } from 'i18n/translate';
 import logoImg from 'assets/images/farfetch-logo.svg';
 
@@ -18,9 +18,26 @@ class Header extends Component {
     history: PropTypes.object.isRequired   // from react-router
   };
 
+  state = {
+    value: '',
+  }
+
+  handleSearchChange = (e) => {
+    this.setState({ value: e.target.value });
+  }
+
+  handleSearchSubmit = (e) => {
+    console.log('Submit query:', this.state.value);
+
+  }
+
   render() {
     const routerParams = this.props.match.params || {};
-    const gender = routerParams.gender || '';;
+    const gender = routerParams.gender || '';
+    //---------------
+    const querySearch = this.state.value;
+    const searchUrl = linkToSearch(querySearch, gender);
+    //-------------
 
     return (
       <div className={classes.root}>
@@ -42,7 +59,14 @@ class Header extends Component {
                 { t('HeaderMissingGender') }
               </div>
               <div className={classes.search}>
-                <Search />
+                <Link to={ searchUrl }>
+                  <Search
+                    value={this.state.value}
+                    placeholder=""
+                    onChange={this.handleSearchChange}
+                    onSubmit={this.handleSearchSubmit}
+                  />
+                </Link>
               </div>
             </div>
           </div>

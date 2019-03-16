@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import SingleDropDownMenu from 'components/SingleDropDownMenu/SingleDropDownMenu.jsx';
 import ProductCard from 'components/ProductCard/ProductCard.jsx';
-import { getShoppingProducts } from 'services/shopping';
+import { getSearchResults } from 'services/shopping';
 import { CATEGORIES_BY_ROUTE } from 'constants/categories';
 import { GENDER } from 'constants/genders';
-import { linkToShopping, linkToProduct } from 'constants/routes';
+import { linkToSearch, linkToProduct } from 'constants/routes';
 import { translate as t } from 'i18n/translate';
 
-import classes from './Catalog.module.scss';
+import classes from './SearchResults.module.scss';
 
 
-class Catalog extends Component {
+class SearchResults extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,    // from react-router
     location: PropTypes.object.isRequired, // from react-router
@@ -48,7 +48,8 @@ class Catalog extends Component {
       category: path[4],
       page: query.get('page'),
       view: query.get('view'),
-      sort: query.get('sort')
+      sort: query.get('sort'),
+      q: query.get('q'),
     }
   }
 
@@ -58,13 +59,14 @@ class Catalog extends Component {
     const params = this.getSearchParamsFromUrl();
     const categoryInfo = CATEGORIES_BY_ROUTE[params.category];
 
-    if (!params.gender || !categoryInfo) {
+    if (!params.gender) {
       console.error('Invalid URL:', params.gender, params.category, categoryInfo);
       this.setState({ isLoadedFailed: true });
       return;
     }
 
     const query = {
+      q: params.q,
       page: params.page || undefined,
       view: params.view || '180',
       sort: params.sort || undefined,
@@ -74,8 +76,11 @@ class Catalog extends Component {
 
     this.setState({ isLoading: true });
 
-    return getShoppingProducts(query)
+    return getSearchResults(query)
       .then(response => {
+
+        console.log('RESPONSE: ', response, 'TOTAL ITEMS', );
+
         this.setState({
           isLoading: false,
           isLoaded: true,
@@ -165,19 +170,19 @@ class Catalog extends Component {
       {
         value: 'picks',
         label: t('CatalogSortOptionPicks'),
-        url: linkToShopping(params.gender, params.category, null, { ...query, sort: '3' })
+        url: linkToSearch(params.gender, params.category, null, { ...query, sort: '3' })
       }, {
         value: 'newest',
         label: t('CatalogSortOptionNewest'),
-        url: linkToShopping(params.gender, params.category, null, { ...query, sort: '2' })
+        url: linkToSearch(params.gender, params.category, null, { ...query, sort: '2' })
       }, {
         value: 'price-desc',
         label: t('CatalogSortOptionPriceDesc'),
-        url: linkToShopping(params.gender, params.category, null, { ...query, sort: '1' })
+        url: linkToSearch(params.gender, params.category, null, { ...query, sort: '1' })
       }, {
         value: 'price-asc',
         label: t('CatalogSortOptionPriceAsc'),
-        url: linkToShopping(params.gender, params.category, null, { ...query, sort: '4' })
+        url: linkToSearch(params.gender, params.category, null, { ...query, sort: '4' })
       }
     ];
 
@@ -225,4 +230,4 @@ class Catalog extends Component {
   }
 }
 
-export default Catalog;
+export default SearchResults;

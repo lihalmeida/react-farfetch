@@ -1,26 +1,62 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import classes from './SizeFit.module.scss';
 
 export class SizeFit extends React.Component {
+  static propTypes = {
+    modelMeasurements: PropTypes.object.isRequired,
+    modelIsWearing: PropTypes.object,
+    img: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired
+  }
+
+  static defaultProps = {
+    modelIsWearing: {}
+  }
+
   render() {
+    const detailsSize = this.props;
+
+    const renderModelIsWearing = () => {
+      if (detailsSize.modelIsWearing.modelHeight !== null && detailsSize.modelIsWearing.modelIsWearing) {
+        return (
+          <span>
+            Model is { detailsSize.modelIsWearing.modelHeight[0] } wearing size { detailsSize.modelIsWearing.modelIsWearing }
+          </span>
+        )
+      }
+    }
+
     return (
-      <div className={classes.root}>
-        <div className={classes.detailContainer}>
+      <div className={ classes.root }>
+        <div className={ classes.detailContainer }>
           <p>Centimeters - Inches</p>
-          <h5 className={classes.h5Title}>Model Measurements</h5>
-          <p> Height:1.78 m - 5 ft 10 in<br/>
-              Bust/Chest:86 cm - 33.9 in<br/>
-              Hips: 87 cm - 34.3 in<br/>
-              Waist: 61 cm - 24 in<br/>
-              Model is 1.78 m wearing size 42 - Model is 5 ft 10 in wearing size 42</p>
+          <h5 className={ classes.h5Title }>Model Measurements</h5>
+          <tbody>
+            <tr>
+              <td>Height:</td>
+              <td>1.78 m</td>
+            </tr>
+            <tr>
+              <td>Bust/Chest:</td>
+              <td>86 cm</td>
+            </tr>
+            <tr>
+              <td>Hips:</td>
+              <td>87 cm</td>
+            </tr>
+            <tr>
+              <td>Waist:</td>
+              <td>61 cm</td>
+            </tr>
+          </tbody>
+          <p>{ renderModelIsWearing() }</p>
           <p>All measurements are made by the Farfetch team</p>
-          <p>Still need help? Try our <a>Size Guide</a></p>
+          <p>Still need help? Try our <a href="/" >Size Guide</a></p>
         </div>
-        <div className={classes.imgContainer}>
-          <img
-            src="https://cdn-images.farfetch-contents.com/13/59/50/93/13595093_16707383_480.jpg"
-            alt="product"
-          />
+        <div className={ classes.imgContainer }>
+          <img src={ detailsSize.img } alt={ detailsSize.alt } />
         </div>
       </div>
     );

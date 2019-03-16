@@ -1,44 +1,97 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classes from './TheDetails.module.scss';
 
 export class TheDetails extends React.Component {
+  static propTypes = {
+    productDesigner: PropTypes.string.isRequired,
+    productName: PropTypes.string.isRequired,
+    productDescription: PropTypes.string.isRequired,
+    designerId: PropTypes.string.isRequired,
+    designerColour: PropTypes.string.isRequired,
+    madeInLabel: PropTypes.string,
+    productComposition: PropTypes.array.isRequired,
+    care: PropTypes.array,
+    modelIsWearing: PropTypes.object,
+    designerDescription: PropTypes.string,
+    img: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired
+  }
+
+  static defaultProps = {
+    madeInLabel: '',
+    care: [],
+    modelIsWearing: {},
+    designerDescription: ''
+  }
+
   render() {
+    const details = this.props;
+    const productCompositionArray = details.productComposition;
+    const careArray = details.care;
+
+    const renderCareIntructions = () => {
+      if (careArray.length !== 0){
+        careArray.map((care,idx) => {
+          return (
+            <span key={ "care"+idx }>
+              { careArray[idx].instruction } { careArray[idx].value }
+            </span>
+          )
+        })
+      }
+    }
+
+    const renderModelIsWearing = () => {
+      if (details.modelIsWearing.modelHeight !== null && details.modelIsWearing.modelIsWearing) {
+        return (
+          <span>
+            <h5 className={ classes.h5title }>Wearing</h5>
+            <p>Model is { details.modelIsWearing.modelHeight[0] } wearing size { details.modelIsWearing.modelIsWearing }</p>
+          </span>
+        )
+      }
+    }
+
     return (
-      <div className={classes.root}>
-        <div className={classes.detailContainer}>
-          <div className={classes.column1}>
-            <h1 className={classes.h1Title}>MONTANA</h1>
-            <p className={classes.productName}>black show robe</p>
-            <p>Make a bold statement with Rubin Singer's eye-catching red gown. Ideal for weddings,
-              galas and other seasonal events, this immaculate piece has been expertly fashioned
-              from lustrous silk. It features a figure-flattering shape with a strapless neckline,
-              a tight-fitting pleated body with an easy rear zip fastening and a voluminous long
-              skirt with ruffled tiers for added drama. The Rubin Singer gown is finished off with
-              rows of stunning 3D red rose appliques, perfectly placed to further enhance the
-              hourglass silhouette.</p>
-            <p>Designer Style ID: POIS29803 <br/>
-              Colour: RED <br/>
-              Made in United States</p>
+      <div className={ classes.root }>
+        <div className={ classes.detailContainer }>
+          <div className={ classes.column1 }>
+            <h1 className={ classes.h1Title }>{ details.productDesigner }</h1>
+            <p className={ classes.productName  }>{ details.productName }</p>
+            <p>{ details.productDescription }</p>
+            <p>Designer Style ID: { details.designerId } <br/>
+              Colour: { details.designerColour } <br/>
+              { details.madeInLabel ? <span>{ details.madeInLabel }</span> : null}</p>
+            <p>Composition
+              { productCompositionArray.map((comp, idx) => {
+                return (
+                  <span key={ "composition"+idx }>
+                  <br/> { productCompositionArray[idx].material }: { productCompositionArray[idx].value }
+                  </span>
+                )
+              })}
+            </p>
             <p>
-              Composition <br/>
-              Lining: silk 100% </p>
-            <p> Washing instructions: dry clean only</p>
+              { renderCareIntructions() }
+            </p>
           </div>
-          <div className={classes.column2}>
-            <h5 className={classes.h5title}>Wearing</h5>
-            <p>Model is 1.79 m wearing size 4</p>
-            <h5 className={classes.h5title}>Designer Backstory</h5>
-            <p>As a third generation couturier, New York-based Rubin Singer has fashion running
-              through his veins. Fusing classic haute couture craftsmanship with a distinctly
-              contemporary vision, his exquisite designs are architectural and empowering.
-              Theatrical silhouettes are heightened by complex draping and high-shine fabrics
-              for a structured yet feminine feel.</p>
+          <div className={ classes.column2 }>
+            <span>{ renderModelIsWearing() }</span>
+            <span>
+              { details.designerDescription
+                ? (<span>
+                    <h5 className={ classes.h5title }>Designer Backstory</h5>
+                    <p>{ details.designerDescription }</p>
+                  </span>)
+                : null
+              }
+            </span>
+
           </div>
         </div>
-        <div className={classes.imgContainer}>
-          <img
-            src="https://cdn-images.farfetch-contents.com/13/59/50/93/13595093_16707385_480.jpg"
-            alt="product"
+        <div className={ classes.imgContainer }>
+          <img src={ details.img } alt={ details.alt }
           />
         </div>
       </div>

@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Home from 'containers/Home/Home';
 import Catalog from 'containers/Catalog/Catalog';
+import SearchResults from 'containers/SearchResults/SearchResults';
 import Product from 'containers/Product/Product';
 import NotFound from 'containers/NotFound/NotFound';
 import Components from 'containers/Components/Components';
@@ -28,6 +29,7 @@ class App extends Component {
               <Switch>
                 <Route exact path={ROUTER_PATHS.home} component={Home} />
                 <Route path={ROUTER_PATHS.shopping} component={Catalog} />
+                <Route path={ROUTER_PATHS.search} component={SearchResults} />
                 <Route path={ROUTER_PATHS.product} component={Product} />
                 <Route exact path={ROUTER_PATHS.ui} component={Components} />
                 <Route component={NotFound} />

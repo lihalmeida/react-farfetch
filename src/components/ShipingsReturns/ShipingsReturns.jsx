@@ -34,9 +34,9 @@ export class ShipingsReturns extends React.Component {
         <div className={classes.column3}>
           <h5 className={classes.h5Title}>Need more information</h5>
           <ul>
-            <li><a>Orders & Shipping</a></li>
-            <li><a>Returns & Refunds</a></li>
-            <li><a>Duties & Taxes</a></li>
+            <li><a href="/">Orders & Shipping</a></li>
+            <li><a href="/">Returns & Refunds</a></li>
+            <li><a href="/">Duties & Taxes</a></li>
           </ul>
         </div>
       </div>

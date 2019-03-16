@@ -112,6 +112,12 @@ class Product extends Component {
       { value: '38', label: '38 FR' }
     ];
     const data = this.state.product.productViewModel;
+    const historyArr = data.breadcrumb;
+    let history = 'Home';
+
+    for( let i=1; i<historyArr.length-1; i++ ) {
+      history = `${history} > ${historyArr[i].text}`;
+    }
 
     return (
       <div>
@@ -121,27 +127,25 @@ class Product extends Component {
             <img src={ data.images.main[1]['600'] } alt={ data.images.main[1].alt } />
           </div>
           <div className={classes.productInfo}>
-              <span className={classes.newSeason}>Exclusive</span>
-              <h3 className={classes.productDesigner}>MONTANA</h3>
-              <p className={classes.productName}>
-                {data.details.shortDescription}
-              </p>
-              <div className={classes.productPrice}>1,031 €</div>
+              <span className={classes.newSeason}>{ data.details.merchandiseTag }</span>
+              <h3 className={classes.productDesigner}>{ data.designerDetails.name }</h3>
+              <p className={classes.productName}>{ data.details.shortDescription }</p>
+              <div className={classes.productPrice}>{ data.priceInfo.default.formattedFinalPrice }</div>
               <div>
                 <Select
-                  options={sizes}
-                  value={this.state.size}
-                  onChange={this.handleChoiceSelect}
+                  options={ sizes }
+                  value={ this.state.size }
+                  onChange={ this.handleChoiceSelect }
                   />
               </div>
               <div className={classes.buttons}>
-                <Button isSizeFill theme={THEME.primary}>Add to bag</Button>
-                <Button theme={THEME.secondary}>Wishlist</Button>
+                <Button isSizeFill theme={ THEME.primary }>Add to bag</Button>
+                <Button theme={ THEME.secondary }>Wishlist</Button>
               </div>
           </div>
         </div>
         <div className={classes.history}>
-          Home > Women > Clothing > Beachwear
+          {history}
         </div>
         <div className={classes.detailsContent}>
             <div className={classes.detailsContentMenu}>
@@ -156,8 +160,32 @@ class Product extends Component {
             </div>
 
             <div className={classes.details}>
-              { (this.state.activeTab === 'details') ?  <TheDetails /> : null }
-              { (this.state.activeTab === 'size') && <SizeFit /> }
+              { (this.state.activeTab === 'details')
+                  ?  <TheDetails
+                        productDesigner={ data.designerDetails.name }
+                        productName={ data.details.shortDescription }
+                        productDescription={ data.details.description }
+                        designerId={ data.designerDetails.designerStyleId }
+                        designerColour={ data.designerDetails.designerColour }
+                        madeInLabel={ data.details.madeInLabel }
+                        productComposition={ data.composition }
+                        care={data.care}
+                        modelIsWearing={ data.measurements }
+                        designerDescription={ data.designerDetails.description }
+                        img={ data.images.main[2]['600'] }
+                        alt={ data.images.main[2].alt }
+                     />
+                  : null
+              }
+              { (this.state.activeTab === 'size')
+                  ? <SizeFit
+                    modelMeasurements={ data.measurements.modelMeasurements }
+                    modelIsWearing={ data.measurements }
+                    img={ data.images.main[3]['600'] }
+                    alt={ data.images.main[3].alt }
+                  />
+                  : null
+              }
               { (this.state.activeTab === 'shipping') && <ShipingsReturns /> }
             </div>
         </div>
