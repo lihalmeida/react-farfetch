@@ -13,7 +13,7 @@ export const linkToUi = () => ROUTER_PATHS.ui;
 
 export const linkToLogin = (lang='') => {
   lang = lang || getLanguage();
-  return `${lang}/login`;
+  return `/${lang}/login`;
 };
 
 export const linkToShopping = (gender, category='', lang='', queryOpts = {}) => {
