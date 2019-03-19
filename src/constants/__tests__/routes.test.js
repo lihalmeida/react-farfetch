@@ -1,8 +1,11 @@
-import { linkToLogin,
-         linkToHome,
-         linkToUi,
-         linkToShopping,
-         linkToProduct } from '../routes';
+import {
+  linkToLogin,
+  linkToHome,
+  linkToUi,
+  linkToShopping,
+  linkToSearch,
+  linkToProduct
+} from '../routes';
 
 // .toBe           // expect(222).toBe(222)
 // .toEqual        // expect({ a: 1, b: 2 }).toEqual({ b: 2, a: 1 })
@@ -76,7 +79,7 @@ describe('linkToShopping', () => {
 
 describe('linkToSearch', () => {
   it('should get link to search', () => {
-    expect(linkToShopping('levis', 'women')).toBe('/en/shopping/women/items.aspx?q=levis');
+    expect(linkToSearch('levis', 'women')).toBe('/en/shopping/women/search/items.aspx?q=levis');
   });
 });
 
@@ -91,5 +94,3 @@ describe('linkToProduct', () => {
     expect(url).toBe('/en/shopping/women/jeans-blue-levis-item-123456789.aspx');
   });
 });
-
-
