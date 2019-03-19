@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import CatalogSortSelect from 'components/CatalogSortSelect/CatalogSortSelect.jsx';
-import ProductCard from 'components/ProductCard/ProductCard.jsx';
+import CatalogSortSelect from 'components/CatalogSortSelect/CatalogSortSelect';
+import ProductCard from 'components/ProductCard/ProductCard';
+import Loader from 'components/Loader/Loader';
 import { getSearchResults } from 'services/shopping';
-import { CATEGORIES_BY_ROUTE } from 'constants/categories';
 import { GENDER } from 'constants/genders';
 import { linkToSearch, linkToProduct } from 'constants/routes';
 import { translate as t } from 'i18n/translate';
@@ -13,11 +13,14 @@ import classes from './SearchResults.module.scss';
 
 
 class SearchResults extends Component {
+
   static propTypes = {
     match: PropTypes.object.isRequired,    // from react-router
     location: PropTypes.object.isRequired, // from react-router
     history: PropTypes.object.isRequired   // from react-router
   };
+
+  lastRouteParams = null;
 
   state = {
     isLoading: false,
@@ -25,61 +28,95 @@ class SearchResults extends Component {
     isLoadedFailed: false,
     products: [],
     totalProducts: '',
-    wishItem: false,
-    sortKey: 'picks'
+    wishItem: false
   };
 
   componentDidMount() {
-    this.fetchProducts();
+    this.fetchData();
   }
 
-  componentWillReceiveProps() {
-    // @TODO this method is going to be deprecated...
-    this.fetchProducts();
+  componentDidUpdate() {
+    this.fetchData();
   }
 
-  getSearchParamsFromUrl() {
-    const path = window.location.pathname.split('/');
-    const query = new URLSearchParams(window.location.search);
+  getSearchParamsFromRoute() {
+    const pathParams = this.props.match.params || {};
+    const query = new URLSearchParams(this.props.location.search);
 
     return {
-      lang: path[1],
-      gender: path[3],
-      category: path[4],
+      lang: pathParams.lang,
+      gender: pathParams.gender,
       page: query.get('page'),
       view: query.get('view'),
       sort: query.get('sort'),
-      q: query.get('q'),
-    }
+      q: query.get('q')
+    };
   }
 
-  fetchProducts() {
-    console.log('* fetch products *');
+  saveLastRouteParams(query) {
+    this.lastRouteParams = query;
+  }
 
-    const params = this.getSearchParamsFromUrl();
-    const categoryInfo = CATEGORIES_BY_ROUTE[params.category];
-
-    if (!params.gender) {
-      console.error('Invalid URL:', params.gender, params.category, categoryInfo);
-      this.setState({ isLoadedFailed: true });
-      return;
+  shouldFetchData(queryParams) {
+    // there's no query to execute
+    if (!queryParams) {
+      return false;
     }
 
-    const query = {
-      q: params.q,
-      page: params.page || undefined,
-      view: params.view || '180',
-      sort: params.sort || undefined,
-      gender: params.gender,
-      category: categoryInfo.id
+    // no object to compare, so it should be the first request
+    if (!this.lastRouteParams) {
+      return true;
+    }
+
+    // compare with saved object
+    return (
+      this.lastRouteParams.lang !== queryParams.lang
+      || this.lastRouteParams.gender !== queryParams.gender
+      || this.lastRouteParams.page !== queryParams.page
+      || this.lastRouteParams.view !== queryParams.view
+      || this.lastRouteParams.sort !== queryParams.sort
+      || this.lastRouteParams.q !== queryParams.q
+    );
+  }
+
+  fetchData() {
+    const routeParams = this.getSearchParamsFromRoute();
+
+    // no useful parameter was changed since last request?
+    if (!this.shouldFetchData(routeParams)) {
+      return Promise.resolve(null);
+    }
+
+    // if any parameter was changed, then save and updated copy of the query params (so we can
+    // compare later) and execute new request
+    this.saveLastRouteParams(routeParams);
+
+    // validation errors
+    if (!routeParams.gender) {
+      this.setState({ isLoadedFailed: true });
+      return Promise.reject('Missing valid gender.');
+    }
+
+    if (!routeParams.q) {
+      this.setState({ isLoadedFailed: true });
+      return Promise.reject('Missing valid query search.');
+    }
+
+
+    const data = {
+      page: routeParams.page || undefined,
+      view: routeParams.view || '180',
+      sort: routeParams.sort || undefined,
+      gender: routeParams.gender,
+      q: routeParams.q
     };
 
     this.setState({ isLoading: true });
 
-    return getSearchResults(query)
+    // execute request
+    return getSearchResults(data)
       .then(response => {
-
-        console.log('RESPONSE: ', response, 'TOTAL ITEMS', );
+        console.log('SEARCH RESULTS:', response);
 
         this.setState({
           isLoading: false,
@@ -125,24 +162,29 @@ class SearchResults extends Component {
     );
   }
 
-  renderLoader() {
+  renderLoading() {
     return(
       <div className={classes.loading}>
-        LOADING...
+        <Loader />
       </div>
     );
   }
 
   renderError() {
+    const routeParams = this.getSearchParamsFromRoute();
+    const message = (!routeParams.q)
+      ? 'MISSING TERM TO SEARCH...'
+      : 'FAILED TO LOAD PRODUCTS...';
+
     return(
       <div className={classes.loading}>
-        FAILED TO LOAD PRODUCTS...
+        {message}
       </div>
     );
   }
 
   renderProducts() {
-    const params = this.getSearchParamsFromUrl();
+    const params = this.getSearchParamsFromRoute();
 
     return (
       <div className={classes.catalog}>
@@ -156,33 +198,30 @@ class SearchResults extends Component {
   }
 
   renderSort() {
-    // value: PropTypes.string.isRequired,
-    // label: PropTypes.string.isRequired,
-    // url: P
-    const params = this.getSearchParamsFromUrl();
-    const value = this.state.sortKey;
+    const params = this.getSearchParamsFromRoute();
+    const value = params.sort || '3'; // default sort is picks (id=3)
     const query = {
       view: params.view,
-      sort: params.sort,
+      sort: ''
     };
 
     const options = [
       {
-        value: 'picks',
+        value: '3',
         label: t('CatalogSortOptionPicks'),
-        url: linkToSearch(params.gender, params.category, null, { ...query, sort: '3' })
+        url: linkToSearch(params.q, params.gender, null, { ...query, sort: '3' })
       }, {
-        value: 'newest',
+        value: '2',
         label: t('CatalogSortOptionNewest'),
-        url: linkToSearch(params.gender, params.category, null, { ...query, sort: '2' })
+        url: linkToSearch(params.q, params.gender, null, { ...query, sort: '2' })
       }, {
-        value: 'price-desc',
+        value: '1',
         label: t('CatalogSortOptionPriceDesc'),
-        url: linkToSearch(params.gender, params.category, null, { ...query, sort: '1' })
+        url: linkToSearch(params.q, params.gender, null, { ...query, sort: '1' })
       }, {
-        value: 'price-asc',
+        value: '4',
         label: t('CatalogSortOptionPriceAsc'),
-        url: linkToSearch(params.gender, params.category, null, { ...query, sort: '4' })
+        url: linkToSearch(params.q, params.gender, null, { ...query, sort: '4' })
       }
     ];
 
@@ -199,7 +238,7 @@ class SearchResults extends Component {
     let content;
 
     if (isLoading) {
-      content = this.renderLoader();
+      content = this.renderLoading();
     } else if (isLoadedFailed || isInvalidCategory) {
       content = this.renderError();
     } else {
@@ -213,7 +252,7 @@ class SearchResults extends Component {
             Home > Women > Clothing > Beachwear
           </div>
           <div className={classes.category}>
-            <h1>DESIGNER BEACHWEAR</h1>
+            <h1>Category</h1>
           </div>
           <div className={classes.unitsAndSort}>
             <div className={classes.units}>

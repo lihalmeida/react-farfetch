@@ -96,7 +96,7 @@ class Catalog extends Component {
     // validation errors
     if (!routeParams.gender || !categoryInfo) {
       this.setState({ isLoadedFailed: true });
-      return Promise.error('Missing valid gender or category.');
+      return Promise.reject('Missing valid gender or category.');
     }
 
 

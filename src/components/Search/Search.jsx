@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Icon, ICON } from 'components/Icon/Icon';
+import { linkToSearch } from 'constants/routes';
 import classes from './Search.module.scss';
 
 export class Search extends React.Component {
   static propTypes = {
     value: PropTypes.string,
     placeholder: PropTypes.string,
+    gender: PropTypes.string,
     onChange: PropTypes.func,
     onSubmit: PropTypes.func
   };
@@ -14,6 +17,7 @@ export class Search extends React.Component {
   static defaultProps = {
     value: '',
     placeholder: '',
+    gender: '',
     onChange: () => {},
     onSubmit: () => {},
 
@@ -26,11 +30,6 @@ export class Search extends React.Component {
     }
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('SUBMIT');
-  }
-
   render() {
     return (
       <div className={classes.root}>
@@ -41,14 +40,17 @@ export class Search extends React.Component {
           placeholder={this.props.placehold}
           onChange={this.props.onChange}
           onKeyUp={this.handleKeyUp}
-          onSubmit={this.handleSubmit}
+          onSubmit={this.props.onSubmit}
         />
         <div
           role="button"
           className={classes.icon}
           onClick={this.props.onSubmit}
         >
-          <Icon width={30} height={30} icon={ICON.search} />
+          <Link to={linkToSearch(this.props.value, this.props.gender)}>
+            <Icon width={30} height={30} icon={ICON.search} />
+          </Link>
+
         </div>
       </div>
     );

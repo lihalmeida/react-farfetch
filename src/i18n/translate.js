@@ -21,8 +21,8 @@ export const setLanguage = (newLang) => {
 };
 
 export const translate = (key) => {
-  return translations[key];
+  return translations[key] || enLabels[key];
 };
 
 // define initial language
-setLanguage(LANGUAGES.en);
+setLanguage(LANGUAGES.pt);

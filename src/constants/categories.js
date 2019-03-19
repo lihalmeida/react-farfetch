@@ -20,23 +20,56 @@ export const CATEGORIES = {
   KIDS_BOYS_CLOTHING: { id: '136647', route: 'boys-clothing-3' }
 };
 
-const indexBy = (obj, property) => {
-  const obj2 = {};
+/**
+ * Categories routes indexed by ID
+ * Example:
+ * CATEGORIES_BY_ID['136656'] = { id: '136656', route: 'baby-girl-clothing-6' }
+ */
+export const CATEGORIES_BY_ID = {
+  '135967': CATEGORIES.WOMEN_CLOTHING, // 'clothing-1',
+  '136301': CATEGORIES.WOMEN_SHOES, // 'shoes-1',
+  '135971': CATEGORIES.WOMEN_BAGS, // 'bags-purses-1',
+  '135973': CATEGORIES.WOMEN_ACCESSORIES, // 'accessories-all-1',
+  '137175': CATEGORIES.WOMEN_JEWELRY, // 'fine-jewelry-6',
+  '136212': CATEGORIES.WOMEN_VINTAGE, // 'vintage-archive-1',
 
-  Object.keys(obj).forEach((oldKey) => {
-    const item = obj[oldKey];
-    const newKey = item[property];
-    obj2[newKey] = item;
-  });
+  '136330': CATEGORIES.MEN_CLOTHING, // 'clothing-2',
+  '135968': CATEGORIES.MEN_SHOES, // 'shoes-2',
+  '137174': CATEGORIES.MEN_SNEAKERS, // 'sneakers-2',
+  '135970': CATEGORIES.MEN_BAGS, // 'bags-purses-2',
+  '135972': CATEGORIES.MEN_ACCESSORIES, // 'accessories-all-2',
+  '137177': CATEGORIES.MEN_WATCHES, // 'watches',
+  '137178': CATEGORIES.MEN_FINE_WATCHES, // 'fine watches',
 
-  return obj2;
+  '136656': CATEGORIES.KIDS_BABY_GIRL_CLOTHING, // 'baby-girl-clothing-6',
+  '136653': CATEGORIES.KIDS_BABY_BOY_CLOTHING, // 'baby-boy-clothing-5',
+  '136650': CATEGORIES.KIDS_GIRLS_CLOTHING, // 'girls-clothing-4',
+  '136647': CATEGORIES.KIDS_BOYS_CLOTHING, // 'boys-clothing-3'
 };
 
 /**
- * Categories indexed by id and route
+ * Categories IDs indexed by route
  * Example:
- * CATEGORIES_BY_ID['136656'] = { id: '136656', route: 'baby-girl-clothing-6' }
  * CATEGORIES_BY_ROUTE['baby-girl-clothing-6'] = { id: '136656', route: 'baby-girl-clothing-6' }
  */
-export const CATEGORIES_BY_ID = indexBy(CATEGORIES, 'id');
-export const CATEGORIES_BY_ROUTE = indexBy(CATEGORIES, 'route');
+export const CATEGORIES_BY_ROUTE = {
+  'clothing-1': CATEGORIES.WOMEN_CLOTHING,
+  'shoes-1': CATEGORIES.WOMEN_SHOES,
+  'bags-purses-1': CATEGORIES.WOMEN_BAGS,
+  'accessories-all-1': CATEGORIES.WOMEN_ACCESSORIES,
+  'fine-jewelry-6': CATEGORIES.WOMEN_JEWELRY,
+  'vintage-archive-1': CATEGORIES.WOMEN_VINTAGE,
+
+  'clothing-2': CATEGORIES.MEN_CLOTHING,
+  'shoes-2': CATEGORIES.MEN_SHOES,
+  'sneakers-2': CATEGORIES.MEN_SNEAKERS,
+  'bags-purses-2': CATEGORIES.MEN_BAGS,
+  'accessories-all-2': CATEGORIES.MEN_ACCESSORIES,
+  'watches': CATEGORIES.MEN_WATCHES,
+  'fine watches': CATEGORIES.MEN_FINE_WATCHES,
+
+  'baby-girl-clothing-6': CATEGORIES.KIDS_BABY_GIRL_CLOTHING,
+  'baby-boy-clothing-5': CATEGORIES.KIDS_BABY_BOY_CLOTHING,
+  'girls-clothing-4': CATEGORIES.KIDS_GIRLS_CLOTHING,
+  'boys-clothing-3': CATEGORIES.KIDS_BOYS_CLOTHING,
+};

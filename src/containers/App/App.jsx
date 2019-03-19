@@ -22,15 +22,17 @@ class App extends Component {
         <BrowserRouter>
           <React.Fragment>
             <Switch>
+              <Route exact path={ROUTER_PATHS.search} component={Header} />
               <Route exact path={ROUTER_PATHS.shopping} component={Header} />
+              <Route exact path={ROUTER_PATHS.product} component={Header} />
               <Route component={Header} />
             </Switch>
             <main className={classes.main}>
               <Switch>
                 <Route exact path={ROUTER_PATHS.home} component={Home} />
-                <Route path={ROUTER_PATHS.shopping} component={Catalog} />
-                <Route path={ROUTER_PATHS.search} component={SearchResults} />
-                <Route path={ROUTER_PATHS.product} component={Product} />
+                <Route exact path={ROUTER_PATHS.search} component={SearchResults} />
+                <Route exact path={ROUTER_PATHS.shopping} component={Catalog} />
+                <Route exact path={ROUTER_PATHS.product} component={Product} />
                 <Route exact path={ROUTER_PATHS.ui} component={Components} />
                 <Route component={NotFound} />
               </Switch>

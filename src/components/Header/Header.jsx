@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Navigation from 'components/Navigation/Navigation';
 import Search from 'components/Search/Search';
 import { linkToHome, linkToSearch } from 'constants/routes';
+import { GENDER } from 'constants/genders';
 import { translate as t } from 'i18n/translate';
 import logoImg from 'assets/images/farfetch-logo.svg';
 
@@ -26,18 +27,21 @@ class Header extends Component {
     this.setState({ value: e.target.value });
   }
 
-  handleSearchSubmit = (e) => {
-    console.log('Submit query:', this.state.value);
+  handleSearchSubmit = () => {
+    const gender = this.props.match.params.gender || GENDER.women;
+    const query = this.state.value;
 
+    console.log('Submit query:', this.state.value, gender);
+    console.log('Link To Search:', linkToSearch(query, gender));
+
+    const url = linkToSearch(query, gender);
+
+    this.props.history.push(url);
   }
 
   render() {
     const routerParams = this.props.match.params || {};
     const gender = routerParams.gender || '';
-    //---------------
-    const querySearch = this.state.value;
-    const searchUrl = linkToSearch(querySearch, gender);
-    //-------------
 
     return (
       <div className={classes.root}>
@@ -59,14 +63,13 @@ class Header extends Component {
                 { t('HeaderMissingGender') }
               </div>
               <div className={classes.search}>
-                <Link to={ searchUrl }>
-                  <Search
-                    value={this.state.value}
-                    placeholder=""
-                    onChange={this.handleSearchChange}
-                    onSubmit={this.handleSearchSubmit}
-                  />
-                </Link>
+                <Search
+                  value={this.state.value}
+                  placeholder=""
+                  gender={gender}
+                  onChange={this.handleSearchChange}
+                  onSubmit={this.handleSearchSubmit}
+                />
               </div>
             </div>
           </div>

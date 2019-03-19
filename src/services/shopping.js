@@ -29,7 +29,7 @@ const extractDataFromProductPage = (html, key) => {
   return data;
 };
 
-// returns html
+// returns json
 export const getSearchResults = (query, lang='') => {
   lang = lang || getLanguage();
 
@@ -43,8 +43,7 @@ export const getSearchResults = (query, lang='') => {
       sort: query.sort,
       pagetype: 'Search',
       gender: toApiParameter(query.gender),
-      pricetype: 'FullPrice',
-      'c-category': query.category
+      pricetype: 'FullPrice'
     }
   })
   .then((response) => response.data);

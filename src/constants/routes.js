@@ -4,7 +4,7 @@ export const ROUTER_PATHS = {
   home: '/',
   login: '/:lang/login.aspx',
   shopping: '/:lang/shopping/:gender/:category/items.aspx',
-  search: '/:lang/shopping/:gender/:category/items.aspx?q=:q',
+  search: '/:lang/shopping/:gender/search/items.aspx',
   product: '/:lang/shopping/:gender/:productid.aspx',
   ui: '/ui'
 };
@@ -48,18 +48,10 @@ export const linkToShopping = (gender, category='', lang='', queryOpts = {}) => 
   return url;
 };
 
-export const linkToSearch = (querySearch, gender, category='', lang='', queryOpts = {}) => {
+export const linkToSearch = (querySearch, gender, lang='', queryOpts = {}) => {
   lang = lang || getLanguage();
-  let url = `/${lang}/shopping/${gender}`;
 
-  if (category) {
-    url += `/${category}`;
-  } else {
-    url += `/search`;
-  }
-
-  url = `${url}/items.aspx`;
-
+  let url = `/${lang}/shopping/${gender}/search/items.aspx`;
   const queryParams = [];
 
   if (queryOpts.page) {
